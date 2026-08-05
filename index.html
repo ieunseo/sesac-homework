@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>은서의 다이어리</title>
+
+    <link rel="stylesheet" href="./style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+<div class="container">
+<header class="main-header">
+    <h2>은서의 다이어리</h2>
+</header>
+
+<main>
+    <section class="diary-section">
+        <div class="diary-banner">
+            <p>일기보관함</p> <p>사진보관함</p>
+        </div>
+        <div class="diary-header">
+            <div class="filter-area">
+                <select id="emotion-filter" class="emotion-filter">
+                    <option value="all">전체</option>
+                    <option value="happy">행복해요</option>
+                    <option value="sad">슬퍼요</option>
+                    <option value="surprised">놀랐어요</option>
+                    <option value="depressed">우울해요</option>
+                    <option value="angry">화나요</option>
+                    <option value="etc">기타</option>
+                </select>
+
+                <div class="filter-search-area">
+                    <p>🔎</p>
+                    <input
+                            type="search"
+                            id="search-input"
+                            placeholder="검색어를 입력해주세요."
+                    >
+                </div>
+                <div class="diary-navigator">
+                    <a class="tab" href="#diaryForm">+ 일기쓰기</a>
+                </div>
+            </div>
+        </div>
+<!-- 다이어리 메인 -->
+        <div id="diary-list-area" class="diary-list">
+        </div>
+    </section>
+<!-- 상단 이동버튼 -->
+    <button
+            type="button"
+            id="scroll-top-button"
+            class="scroll-top-button"
+            aria-label="맨 위로 이동"
+    >
+        ↑
+    </button>
+<!-- 일기 등록-->
+    <div class="form-grid">
+        <div class="form-panel">
+            <form id="diaryForm">
+                <div class="form-fields">
+                    <div class="field">
+                        <h3>일기 쓰기</h3>
+                        <label>오늘 기분은 어땠나요?</label>
+                        <div class="mood-group">
+                            <label class="mood-option"><input type="radio" name="mood" value="행복" checked> 행복해요</label>
+                            <label class="mood-option"><input type="radio" name="mood" value="슬픔"> 슬퍼요</label>
+                            <label class="mood-option"><input type="radio" name="mood" value="놀램"> 놀랐어요</label>
+                            <label class="mood-option"><input type="radio" name="mood" value="우울"> 우울해요</label>
+                            <label class="mood-option"><input type="radio" name="mood" value="화남"> 화가나요</label>
+                            <label class="mood-option"><input type="radio" name="mood" value="기타"> 기타</label>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label for="titleInput">제목</label>
+                        <input id="titleInput" type="text" placeholder="제목을 입력해 주세요." required>
+                    </div>
+
+                    <div class="field">
+                        <label for="contentInput">내용</label>
+                        <textarea id="contentInput" placeholder="내용을 입력해 주세요." required></textarea>
+                    </div>
+
+                    <button class="form-btn" id="submitButton" type="submit">일기 등록하기</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- 상세보기 -->
+        <section class="detail-panel">
+            <h3 class="detail-heading">일기 상세보기</h3>
+
+            <div id="detail-box" class="detail-box">
+                <p class="detail-empty-text">
+                    일기 카드를 선택하면 상세 내용이 표시됩니다.
+                </p>
+            </div>
+
+            <button
+                    type="button"
+                    id="clear-detail-button"
+                    class="detail-clear-button"
+            >
+                선택 해제
+            </button>
+        </section>
+
+    </div>
+</main>
+</div>
+</body>
+</html>

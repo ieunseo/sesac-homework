@@ -1,0 +1,484 @@
+:root {
+    --bg: #f6f3ee;
+    --panel: #ffffff;
+    --text: #1f1f1f;
+    --subtext: #666;
+    --line: #e7dfd6;
+    --shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+    --happy: #fff4c7;
+    --sad: #dff2ff;
+    --blue: #d9f0ff;
+    --purple: #eadcff;
+    --gray: #eef0f3;
+    --pink: #ffe1e8;
+    --button: #1f1f1f;
+    --white: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background-color: var(--bg);
+    color: var(--text);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+/* 상단 네비게이션*/
+.diary-banner {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* 전체 페이지 */
+.page {
+    width: min(100%, 980px);
+    margin: 0 auto;
+    padding: 24px 20px 60px;
+}
+/* 상단 헤더 */
+.diary-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 15px 0;
+    backdrop-filter: blur(10px);
+}
+/* 필터 영역 */
+.filter-area {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* 검색 영역 */
+.filter-search-area {
+    width: 30%;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 0 12px;
+
+    border: 1px solid #ccc;
+    border-radius: 10px;
+
+    background-color: var(--white);
+}
+
+.filter-search-area p {
+    margin: 0;
+}
+
+.filter-search-area input {
+    flex: 1;
+    height: 100%;
+
+    border: none;
+    outline: none;
+
+    background-color: transparent;
+    font-size: 14px;
+}
+
+/* 드롭다운 */
+.emotion-filter {
+    width: 100px;
+    height: 40px;
+
+    padding: 0 8px;
+
+    border: 1px solid #ccc;
+    border-radius: 10px;
+
+    background-color: var(--white);
+}
+
+/* 일기쓰기 버튼 */
+.diary-navigator {
+    margin-left: auto;
+}
+
+.diary-navigator a {
+    height: 40px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 18px;
+
+    text-decoration: none;
+    color: var(--white);
+    background-color: var(--button);
+
+    border-radius: 10px;
+}
+
+/* 일기 보관함 기본 문구 */
+.diary-default-text {
+    text-align: center;
+    padding: 100px 0;
+}
+
+/* 일기 폼 전체 영역 */
+.form-grid {
+    margin-top: 30px;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+
+    align-items: start;
+}
+
+/* 일기 폼 */
+.form-panel {
+    width: 100%;
+    padding: 20px;
+
+    background-color: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+}
+
+/* 입력폼 전체 */
+.form-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* 각각의 입력 영역 */
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.field > label {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.field h3 {
+    margin: 0;
+    padding: 0;
+}
+
+/* 제목 입력창 */
+.field input[type="text"] {
+    width: 100%;
+    height: 40px;
+
+    padding: 0 10px;
+
+    border: 1px solid var(--line);
+    border-radius: 8px;
+
+    font-size: 14px;
+    outline: none;
+}
+
+/* 내용 입력창 */
+.field textarea {
+    width: 100%;
+    height: 130px;
+
+    padding: 10px;
+
+    border: 1px solid var(--line);
+    border-radius: 8px;
+
+    font-size: 14px;
+
+    resize: none;
+    outline: none;
+}
+
+/* 감정 선택 */
+.mood-group {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    gap: 12px 18px;
+    padding: 5px 0;
+}
+
+.mood-option {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+
+    cursor: pointer;
+}
+
+/* 등록 버튼 */
+.form-btn {
+    height: 40px;
+
+    border: none;
+    border-radius: 8px;
+
+    background-color: var(--button);
+    color: var(--white);
+
+    font-size: 14px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+/* 일기 - 상세보기 */
+.detail-panel {
+    width: 100%;
+    padding: 20px;
+
+    background-color: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+}
+
+/* 상세보기 제목 */
+.detail-heading {
+    margin: 0 0 15px;
+}
+
+/* 실제 상세 내용 영역 */
+.detail-box {
+    min-height: 300px;
+    padding: 20px;
+
+    border: 1px solid var(--line);
+    border-radius: 12px;
+
+    background-color: var(--bg);
+}
+
+/* 선택한 일기가 없을 때 */
+.detail-empty-text {
+    margin: 0;
+
+    color: var(--subtext);
+    text-align: center;
+}
+
+/* 상세보기 내부 제목 */
+.detail-title {
+    margin: 0 0 10px;
+}
+
+/* 감정과 날짜 */
+.detail-information {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 10px;
+    margin-bottom: 20px;
+
+    color: var(--subtext);
+    font-size: 13px;
+}
+
+/* 일기 내용 */
+.detail-content {
+    margin: 0;
+    padding: 0;
+
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.7;
+
+    text-align: left;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+}
+
+/* 선택 해제 버튼 */
+.detail-clear-button {
+    width: 100%;
+    height: 40px;
+
+    margin-top: 15px;
+
+    border: none;
+    border-radius: 8px;
+
+    background-color: var(--gray);
+    color: var(--text);
+
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* 상단 이동 버튼 */
+.scroll-top-button {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 200;
+
+    width: 45px;
+    height: 45px;
+
+    border: 1px solid var(--line);
+    border-radius: 50%;
+
+    background-color: var(--white);
+    color: var(--text);
+
+    font-size: 20px;
+    cursor: pointer;
+
+    box-shadow: var(--shadow);
+}
+/* 일기장 css */
+.diary-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px 16px;
+
+    padding: 30px 0;
+}
+
+.diary-default-text {
+    grid-column: 1 / -1;
+
+    text-align: center;
+    padding: 100px 0;
+}
+/* 일기 카드 */
+.diary-card {
+    position: relative;
+    min-width: 0;
+
+    background-color: var(--white);
+    border-radius: 12px;
+    overflow: hidden;
+
+}
+.diary-card:hover {
+    transform: scale(1.03);
+}
+.diary-image-area {
+    height: 180px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 12px 12px 0 0;
+    background-color: var(--gray);
+
+    overflow: hidden;
+}
+
+.diary-card.happy .diary-image-area {
+    background-color: var(--happy);
+}
+
+.diary-card.sad .diary-image-area {
+    background-color: var(--sad);
+}
+
+.diary-card.surprised .diary-image-area {
+    background-color: var(--purple);
+}
+
+.diary-card.depressed .diary-image-area {
+    background-color: var(--gray);
+}
+
+.diary-card.angry .diary-image-area {
+    background-color: var(--pink);
+}
+
+.diary-card.etc .diary-image-area {
+    background-color: var(--blue);
+}
+
+.diary-emoji {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 64px;
+}
+
+.delete-button {
+    position: absolute;
+    top: 7px;
+    right: 7px;
+    z-index: 10;
+
+    width: 24px;
+    height: 24px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 0;
+
+    border: none;
+    border-radius: 50%;
+
+    background-color: var(--white);
+    color: var(--text);
+
+    font-size: 17px;
+    cursor: pointer;
+}
+
+.diary-card-content {
+    width: 90%;
+    padding-top: 8px;
+    margin: 0 auto;
+    background-color: var(--white);
+}
+
+.diary-information {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 10px;
+}
+
+.diary-mood {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.diary-date {
+    color: var(--subtext);
+    font-size: 11px;
+}
+
+.diary-title {
+    margin: 8px 0 0;
+
+    font-size: 15px;
+}
+
+.diary-preview {
+    margin: 10px 0 ;
+
+    color: var(--subtext);
+    font-size: 13px;
+
+}
