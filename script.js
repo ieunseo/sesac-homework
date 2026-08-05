@@ -152,7 +152,7 @@ const renderDiaryList = () => {
     const visibleList = diaryListData.filter((diary) => {
         /*
          * 드롭다운의 value는
-         * all, happy, sad 등의 영어 코드임
+         * all, happy, sad 등
          */
         const matchEmotion =
             selectedEmotion === "all" ||
@@ -367,10 +367,7 @@ diaryListArea.addEventListener("click", (event) => {
         return;
     }
 
-    /*
-     * 삭제 버튼의 클릭 이벤트가 부모 카드로 올라가
-     * 상세보기 이벤트까지 실행되는 것을 막음
-     */
+    /* 이벤트 버블링 방지 */
     event.stopPropagation();
 
     const diaryId =
