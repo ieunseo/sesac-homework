@@ -17,7 +17,10 @@ const emotionFilter = document.getElementById("emotion-filter");
 const searchInput = document.getElementById("search-input");
 
 const scrollTopButton = document.getElementById("scroll-top-button");
-
+/* modal 을 위해서 추가하는 요소 */
+const diaryModal = document.querySelector("#diaryModal");
+const openDiaryModalButton = document.querySelector("#openDiaryModalButton");
+const closeDiaryModalButton = document.querySelector("#closeDiaryModalButton");
 
 /* LocalStorage에서 일기 배열 불러오기 */
 const loadDiaryList = () => {
@@ -294,6 +297,8 @@ const handleSubmit = (event) => {
     if (firstMood !== null) {
         firstMood.checked = true;
     }
+    /* 모달 닫음 */
+    closeDiaryModal();
 };
 
 
@@ -367,4 +372,39 @@ window.addEventListener("load", () => {
 
     /* 일기 목록 출력 */
     renderDiaryList();
+});
+
+/* 모달 */
+function openDiaryModal() {
+    diaryModal.classList.add("is-open");
+    document.body.classList.add("modal-open");
+
+    diaryModal.setAttribute("aria-hidden", "false");
+    titleInput.focus();
+}
+
+function closeDiaryModal() {
+    diaryModal.classList.remove("is-open");
+    document.body.classList.remove("modal-open");
+
+    diaryModal.setAttribute("aria-hidden", "true");
+}
+openDiaryModalButton.addEventListener("click", openDiaryModal);
+
+closeDiaryModalButton.addEventListener("click", closeDiaryModal);
+
+/* 모달 외에 영역 클릭시 닫기 */
+diaryModal.addEventListener("click", (event) => {
+    if (event.target === diaryModal) {
+        closeDiaryModal();
+    }
+});
+/* ESC로 닫기*/
+document.addEventListener("keydown", (event) => {
+    if (
+        event.key === "Escape" &&
+        diaryModal.classList.contains("is-open")
+    ) {
+        closeDiaryModal();
+    }
 });

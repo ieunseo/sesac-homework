@@ -2,7 +2,10 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+    >
 
     <title>은서의 다이어리</title>
 
@@ -12,87 +15,185 @@
 
 <body>
 <div class="container">
-<header class="main-header">
-    <h2>은서의 다이어리</h2>
-</header>
+    <header class="main-header">
+        <h2>은서의 다이어리</h2>
+    </header>
 
-<main>
-    <section class="diary-section">
-        <div class="diary-banner">
-            <p>일기보관함</p> <p>사진보관함</p>
-        </div>
-        <div class="diary-header">
-            <div class="filter-area">
-                <select id="emotion-filter" class="emotion-filter">
-                    <option value="all">전체</option>
-                    <option value="happy">행복해요</option>
-                    <option value="sad">슬퍼요</option>
-                    <option value="surprised">놀랐어요</option>
-                    <option value="angry">화나요</option>
-                    <option value="etc">기타</option>
-                </select>
+    <main>
+        <section class="diary-section">
+            <div class="diary-banner">
+                <p>일기보관함</p>
+                <p>사진보관함</p>
+            </div>
 
-                <div class="filter-search-area">
-                    <p>🔎</p>
-                    <input
-                            type="search"
-                            id="search-input"
-                            placeholder="검색어를 입력해주세요."
+            <div class="diary-header">
+                <div class="filter-area">
+                    <select
+                            id="emotion-filter"
+                            class="emotion-filter"
+                            aria-label="감정 필터"
                     >
-                </div>
-                <div class="diary-navigator">
-                    <a class="tab" href="#diaryForm">+ 일기쓰기</a>
+                        <option value="all">전체</option>
+                        <option value="happy">행복해요</option>
+                        <option value="sad">슬퍼요</option>
+                        <option value="surprised">놀랐어요</option>
+                        <option value="angry">화나요</option>
+                        <option value="etc">기타</option>
+                    </select>
+
+                    <div class="filter-search-area">
+                        <span aria-hidden="true">🔎</span>
+
+                        <input
+                                type="search"
+                                id="search-input"
+                                placeholder="검색어를 입력해주세요."
+                                aria-label="일기 검색"
+                        >
+                    </div>
+
+                    <div class="diary-navigator">
+                        <button
+                                type="button"
+                                id="openDiaryModalButton"
+                                class="tab"
+                        >
+                            + 일기쓰기
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
-<!-- 다이어리 메인 -->
-        <div id="diary-list-area" class="diary-list">
-        </div>
-    </section>
-<!-- 상단 이동버튼 -->
-    <button
-            type="button"
-            id="scroll-top-button"
-            class="scroll-top-button"
-            aria-label="맨 위로 이동"
-    >
-        <img src="./img/up_outline_light_xl.svg" width="40px" height="4px" />
-    </button>
-<!-- 일기 등록
- 모달로변경하기
- -->
-    <div class="form-grid">
-        <div class="form-panel">
-            <form id="diaryForm">
-                <div class="form-fields">
-                    <div class="field">
-                        <h3>일기 쓰기</h3>
-                        <label>오늘 기분은 어땠나요?</label>
-                        <div class="mood-group">
-                            <label class="mood-option"><input type="radio" name="mood" value="행복" checked> 행복해요</label>
-                            <label class="mood-option"><input type="radio" name="mood" value="슬픔"> 슬퍼요</label>
-                            <label class="mood-option"><input type="radio" name="mood" value="놀램"> 놀랐어요</label>
-                            <label class="mood-option"><input type="radio" name="mood" value="화남"> 화가나요</label>
-                            <label class="mood-option"><input type="radio" name="mood" value="기타"> 기타</label>
-                        </div>
-                    </div>
 
-                    <div class="field">
-                        <label for="titleInput">제목</label>
-                        <input id="titleInput" type="text" placeholder="제목을 입력해 주세요." required>
-                    </div>
+            <!-- 다이어리 목록 -->
+            <div
+                    id="diary-list-area"
+                    class="diary-list"
+            ></div>
+        </section>
 
-                    <div class="field">
-                        <label for="contentInput">내용</label>
-                        <textarea id="contentInput" placeholder="내용을 입력해 주세요." required></textarea>
-                    </div>
+        <!-- 상단 이동 버튼 -->
+        <button
+                type="button"
+                id="scroll-top-button"
+                class="scroll-top-button"
+                aria-label="맨 위로 이동"
+        >
+            <img
+                    src="./img/up_outline_light_xl.svg"
+                    width="40"
+                    height="40"
+                    alt=""
+            >
+        </button>
+    </main>
+</div>
 
-                    <button class="form-btn" id="submitButton" type="submit">일기 등록하기</button>
+<!-- 일기 작성 모달 -->
+<div
+        id="diaryModal"
+        class="form-grid"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="diaryModalTitle"
+        aria-hidden="true"
+>
+    <div class="form-panel">
+        <button
+                type="button"
+                id="closeDiaryModalButton"
+                class="modal-close-button"
+                aria-label="일기 작성 창 닫기"
+        >
+            ×
+        </button>
+
+        <form id="diaryForm">
+            <div class="form-fields">
+                <div class="field">
+                    <h3 id="diaryModalTitle">일기 쓰기</h3>
+
+                    <label>오늘 기분은 어땠나요?</label>
+
+                    <div class="mood-group">
+                        <label class="mood-option">
+                            <input
+                                    type="radio"
+                                    name="mood"
+                                    value="행복"
+                                    checked
+                            >
+                            행복해요
+                        </label>
+
+                        <label class="mood-option">
+                            <input
+                                    type="radio"
+                                    name="mood"
+                                    value="슬픔"
+                            >
+                            슬퍼요
+                        </label>
+
+                        <label class="mood-option">
+                            <input
+                                    type="radio"
+                                    name="mood"
+                                    value="놀램"
+                            >
+                            놀랐어요
+                        </label>
+
+                        <label class="mood-option">
+                            <input
+                                    type="radio"
+                                    name="mood"
+                                    value="화남"
+                            >
+                            화가나요
+                        </label>
+
+                        <label class="mood-option">
+                            <input
+                                    type="radio"
+                                    name="mood"
+                                    value="기타"
+                            >
+                            기타
+                        </label>
+                    </div>
                 </div>
-            </form>
-        </div>
+
+                <div class="field">
+                    <label for="titleInput">제목</label>
+
+                    <input
+                            id="titleInput"
+                            type="text"
+                            placeholder="제목을 입력해 주세요."
+                            required
+                    >
+                </div>
+
+                <div class="field">
+                    <label for="contentInput">내용</label>
+
+                    <textarea
+                            id="contentInput"
+                            placeholder="내용을 입력해 주세요."
+                            required
+                    ></textarea>
+                </div>
+
+                <button
+                        class="form-btn"
+                        id="submitButton"
+                        type="submit"
+                >
+                    일기 등록하기
+                </button>
+            </div>
+        </form>
     </div>
-</main>
 </div>
 </body>
 </html>
