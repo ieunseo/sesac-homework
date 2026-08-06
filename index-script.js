@@ -18,11 +18,6 @@ const searchInput = document.getElementById("search-input");
 
 const scrollTopButton = document.getElementById("scroll-top-button");
 
-const detailBox = document.getElementById("detail-box");
-const clearDetailButton = document.getElementById(
-    "clear-detail-button"
-);
-
 
 /* LocalStorage에서 일기 배열 불러오기 */
 const loadDiaryList = () => {
@@ -62,13 +57,12 @@ const saveDiaryList = () => {
 
 /* 감정에 맞는 이모지 반환 */
 const getMoodEmoji = (mood) => {
-    if (mood === "행복") return "😊";
-    if (mood === "슬픔") return "😢";
-    if (mood === "놀램") return "😲";
-    if (mood === "우울") return "😞";
-    if (mood === "화남") return "😡";
+    if (mood === "행복") return '<img src="./img/happy.png"/>';
+    if (mood === "슬픔") return '<img src="./img/sad.png"/>';
+    if (mood === "놀램") return '<img src="./img/suprised.png"/>';
+    if (mood === "화남") return '<img src="./img/angry.png"/>';
 
-    return "🤔";
+    return '<img src="./img/happy.png"/>';
 };
 
 
@@ -77,7 +71,6 @@ const getMoodClass = (mood) => {
     if (mood === "행복") return "happy";
     if (mood === "슬픔") return "sad";
     if (mood === "놀램") return "surprised";
-    if (mood === "우울") return "depressed";
     if (mood === "화남") return "angry";
 
     return "etc";
@@ -89,7 +82,6 @@ const getMoodLabel = (mood) => {
     if (mood === "행복") return "행복해요";
     if (mood === "슬픔") return "슬퍼요";
     if (mood === "놀램") return "놀랐어요";
-    if (mood === "우울") return "우울해요";
     if (mood === "화남") return "화가나요";
 
     return "기타";
@@ -138,7 +130,7 @@ const getSelectedMood = () => {
 };
 
 
-/* 일기 목록 출력 */
+/* 일기 검색 */
 const renderDiaryList = () => {
     const selectedEmotion = emotionFilter.value;
 
@@ -188,7 +180,7 @@ const renderDiaryList = () => {
      * 최신 일기부터 표시
      *
      * map()은 일기 객체를 카드 HTML로 변환
-     * join("")은 카드 문자열 사이의 쉼표를 제거하고 합침
+     *                   onclick="showDiaryDetail(${diary.id}
      */
     diaryListArea.innerHTML = visibleList
         .slice()
@@ -197,8 +189,7 @@ const renderDiaryList = () => {
             return `
                 <article
                     class="diary-card ${getMoodClass(diary.mood)}"
-                    data-id="${diary.id}"
-                    onclick="showDiaryDetail(${diary.id})"
+                    data-id="${diary.id}")"
                 >
                     <button
                         type="button"
@@ -206,7 +197,7 @@ const renderDiaryList = () => {
                         data-id="${diary.id}"
                         aria-label="일기 삭제"
                     >
-                        ×
+                        <img src="./img/close_outline_light_s.svg" />
                     </button>
 
                     <div class="diary-image-area">
@@ -238,51 +229,6 @@ const renderDiaryList = () => {
         .join("");
 };
 
-
-/* 카드 클릭 시 ID로 일기를 찾아 상세보기 출력 */
-window.showDiaryDetail = (id) => {
-    /*
-     * find()는 배열에서 조건에 맞는
-     * 첫 번째 객체 하나를 반환
-     */
-    const diary = diaryListData.find((item) => {
-        return item.id === id;
-    });
-
-    /* 해당 ID의 일기가 없으면 종료 */
-    if (diary === undefined) {
-        return;
-    }
-
-    detailBox.innerHTML = `
-        <h3 class="detail-title">
-            ${diary.title}
-        </h3>
-
-        <div class="detail-information">
-            <span>
-                ${getMoodEmoji(diary.mood)}
-                ${getMoodLabel(diary.mood)}
-            </span>
-
-            <time>
-                ${diary.createdAt}
-            </time>
-        </div>
-
-        <p class="detail-content">${diary.content}</p>
-    `;
-};
-
-
-/* 상세보기 초기화 */
-const clearDiaryDetail = () => {
-    detailBox.innerHTML = `
-        <p class="detail-empty-text">
-            일기 카드를 선택하면 상세 내용이 표시됩니다.
-        </p>
-    `;
-};
 
 
 /* 일기 등록 */
@@ -335,9 +281,6 @@ const handleSubmit = (event) => {
     /* 목록 다시 출력 */
     renderDiaryList();
 
-    /* 방금 작성한 일기를 상세보기에 표시 */
-    window.showDiaryDetail(newDiary.id);
-
     /* 입력폼 초기화 */
     diaryForm.reset();
 
@@ -386,15 +329,6 @@ diaryListArea.addEventListener("click", (event) => {
 
     /* 화면 다시 출력 */
     renderDiaryList();
-
-    /* 상세보기 초기화 */
-    clearDiaryDetail();
-});
-
-
-/* 선택 해제 */
-clearDetailButton.addEventListener("click", () => {
-    clearDiaryDetail();
 });
 
 
@@ -433,7 +367,4 @@ window.addEventListener("load", () => {
 
     /* 일기 목록 출력 */
     renderDiaryList();
-
-    /* 상세보기 초기화 */
-    clearDiaryDetail();
 });

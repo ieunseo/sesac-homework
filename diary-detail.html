@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<title>상세보기</title>
+    <link rel="stylesheet" href="./detail-style.css">
+    <script src="./detail-script.js" defer></script>
+</head>
+<body><div class="container">
+        <header class="main-header">
+            <h2>은서의 다이어리</h2>
+        </header>
+        <div class="diary-dtail-area">
+            <!-- 타이틀 -->
+            <div class="diary-detail-title">
+                <div class="diary-title">제목</div>
+            </div>
+            <hr>
+            <!-- 감정상태 -->
+            <div class="emotion-state">
+                <div class="mood-img"><img src="./img/happy.png" width="20px"/></div> 
+                <div class="mood-class">행복해요</div>
+                <div class="diary-date">작성일 YYYY.MM.DD</div>
+            </div>
+            <div class="diary-content">내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용ㅍ
+                내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용ㅍ
+            </div>
+            <!-- 오른쪽 하단에 내용복사 -->
+            <div class="action-area">
+                <div class="content-copy">
+                    <img class="content-copy-img" src="./img/copy_outline_light_m.svg"/>
+                    내용복사
+                </div>
+                <div class="diary-detail-btn-area">
+                    <button class="diary-detail-btn">수정</button>
+                    <button class="diary-detail-btn">삭제</button>
+                </div>
+            </div>
+            <hr>
+            <p>회고</p>
+            <section class="comment-area">
+                <form id="commentForm" class="comment-area">
+                    <input
+                        id="commentInput"
+                        type="text"
+                        placeholder="회고를 남겨보세요."
+                        required
+                    >
+                    <button
+                        class="comment-btn"
+                        id="commentButton"
+                        type="submit"
+                    >
+                        입력
+                    </button>
+                </form>
+            </section>
+            <!-- 댓글이 생길곳 -->
+
+        </div>
+    </div>
+</body>
+</html>

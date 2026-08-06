@@ -21,13 +21,14 @@
 }
 
 body {
-    margin: 0;
+    margin: 0 376px;
+        max-width: 1920px;
     background-color: var(--bg);
     color: var(--text);
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 1168px;
     margin: 0 auto;
     padding: 0 30px;
 }
@@ -41,7 +42,7 @@ body {
 
 /* 전체 페이지 */
 .page {
-    width: min(100%, 980px);
+    /* width: min(100%, 980px); */
     margin: 0 auto;
     padding: 24px 20px 60px;
 }
@@ -51,7 +52,7 @@ body {
     top: 0;
     z-index: 100;
     padding: 15px 0;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(30px);
 }
 /* 필터 영역 */
 .filter-area {
@@ -62,7 +63,7 @@ body {
 
 /* 검색 영역 */
 .filter-search-area {
-    width: 30%;
+    width: 60%;
     height: 40px;
 
     display: flex;
@@ -112,7 +113,7 @@ body {
 
 .diary-navigator a {
     height: 40px;
-
+    width: 110px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -328,23 +329,15 @@ body {
 /* 상단 이동 버튼 */
 .scroll-top-button {
     position: fixed;
-    right: 30px;
-    bottom: 30px;
+    right: 40px;
+    bottom: 40px;
     z-index: 200;
 
-    width: 45px;
-    height: 45px;
-
-    border: 1px solid var(--line);
-    border-radius: 50%;
-
-    background-color: var(--white);
-    color: var(--text);
-
-    font-size: 20px;
+    width: 40px;
+    height: 40px;
     cursor: pointer;
+    border:none;
 
-    box-shadow: var(--shadow);
 }
 /* 일기장 css */
 .diary-list {
@@ -364,8 +357,9 @@ body {
 /* 일기 카드 */
 .diary-card {
     position: relative;
+    width: 274px;
     min-width: 0;
-
+    cursor: pointer;
     background-color: var(--white);
     border-radius: 12px;
     overflow: hidden;
@@ -386,7 +380,11 @@ body {
 
     overflow: hidden;
 }
-
+.diary-emoji img{
+    width:96px;
+    height: 96px;
+    display:flex
+}
 .diary-card.happy .diary-image-area {
     background-color: var(--happy);
 }
@@ -415,8 +413,11 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-
     font-size: 64px;
+    background-color: var(--white);
+    width:128px;
+    height: 128px;
+    border-radius:50%
 }
 
 .delete-button {
@@ -481,4 +482,26 @@ body {
     color: var(--subtext);
     font-size: 13px;
 
+}
+
+@media(max-width:779px){
+    body{
+        margin: 0px;
+        padding: 0px;
+    }
+    /* 일기장 css */
+    .diary-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px 16px;
+
+        padding: 30px 0;
+    }
+
+    .diary-default-text {
+        grid-column: 1 / -1;
+
+        text-align: center;
+        padding: 100px 0;
+    }
 }

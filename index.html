@@ -6,8 +6,8 @@
 
     <title>은서의 다이어리</title>
 
-    <link rel="stylesheet" href="./style.css">
-    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="./index-style.css">
+    <script src="./index-script.js" defer></script>
 </head>
 
 <body>
@@ -28,7 +28,6 @@
                     <option value="happy">행복해요</option>
                     <option value="sad">슬퍼요</option>
                     <option value="surprised">놀랐어요</option>
-                    <option value="depressed">우울해요</option>
                     <option value="angry">화나요</option>
                     <option value="etc">기타</option>
                 </select>
@@ -57,9 +56,11 @@
             class="scroll-top-button"
             aria-label="맨 위로 이동"
     >
-        ↑
+        <img src="./img/up_outline_light_xl.svg" width="40px" height="4px" />
     </button>
-<!-- 일기 등록-->
+<!-- 일기 등록
+ 모달로변경하기
+ -->
     <div class="form-grid">
         <div class="form-panel">
             <form id="diaryForm">
@@ -71,7 +72,6 @@
                             <label class="mood-option"><input type="radio" name="mood" value="행복" checked> 행복해요</label>
                             <label class="mood-option"><input type="radio" name="mood" value="슬픔"> 슬퍼요</label>
                             <label class="mood-option"><input type="radio" name="mood" value="놀램"> 놀랐어요</label>
-                            <label class="mood-option"><input type="radio" name="mood" value="우울"> 우울해요</label>
                             <label class="mood-option"><input type="radio" name="mood" value="화남"> 화가나요</label>
                             <label class="mood-option"><input type="radio" name="mood" value="기타"> 기타</label>
                         </div>
@@ -91,26 +91,6 @@
                 </div>
             </form>
         </div>
-
-        <!-- 상세보기 -->
-        <section class="detail-panel">
-            <h3 class="detail-heading">일기 상세보기</h3>
-
-            <div id="detail-box" class="detail-box">
-                <p class="detail-empty-text">
-                    상세 내용
-                </p>
-            </div>
-
-            <button
-                    type="button"
-                    id="clear-detail-button"
-                    class="detail-clear-button"
-            >
-                선택 해제
-            </button>
-        </section>
-
     </div>
 </main>
 </div>
