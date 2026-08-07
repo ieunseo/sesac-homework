@@ -7,20 +7,21 @@ let diaryListData = [];
 
 
 /* HTML 요소 */
-const diaryForm = document.getElementById("diaryForm");
+const diaryForm = document.getElementById("diary-form");
 const diaryListArea = document.getElementById("diary-list-area");
 
-const titleInput = document.getElementById("titleInput");
-const contentInput = document.getElementById("contentInput");
+const titleInput = document.getElementById("title-input");
+const contentInput = document.getElementById("content-input");
 
 const emotionFilter = document.getElementById("emotion-filter");
 const searchInput = document.getElementById("search-input");
 
 const scrollTopButton = document.getElementById("scroll-top-button");
 /* modal 을 위해서 추가하는 요소 */
-const diaryModal = document.querySelector("#diaryModal");
-const openDiaryModalButton = document.querySelector("#openDiaryModalButton");
-const closeDiaryModalButton = document.querySelector("#closeDiaryModalButton");
+const diaryModal = document.querySelector("#diary-modal");
+const openDiaryModalButton = document.querySelector("#open-diary-modal-button");
+const successDiaryModal = document.querySelector("#success-diary-modal");
+const closeSubmitDiaryButton = document.querySelector("#close-submit-diary-button");
 
 /* LocalStorage에서 일기 배열 불러오기 */
 const loadDiaryList = () => {
@@ -31,12 +32,7 @@ const loadDiaryList = () => {
         return [];
     }
 
-    /*
-     * LocalStorage의 문자열을 배열로 변환
-     *
-     * 저장된 값이 배열인지 확인하고,
-     * 배열이 아니거나 JSON 변환에 실패하면 빈 배열 반환
-     */
+    /* LocalStorage의 문자열을 배열로 변환 */
     try {
         const parsedDiaries = JSON.parse(savedDiaries);
 
@@ -192,7 +188,7 @@ const renderDiaryList = () => {
             return `
                 <article
                     class="diary-card ${getMoodClass(diary.mood)}"
-                    data-id="${diary.id}")"
+                    data-id="${diary.id}"
                 >
                     <button
                         type="button"
@@ -286,10 +282,7 @@ const handleSubmit = (event) => {
 
     /* 입력폼 초기화 */
     diaryForm.reset();
-
-    /*
-     * reset 후 행복 감정을 다시 기본 선택
-     */
+    /* 기본 상태로 초기화 */
     const firstMood = document.querySelector(
         'input[name="mood"][value="행복"]'
     );
@@ -298,7 +291,9 @@ const handleSubmit = (event) => {
         firstMood.checked = true;
     }
     /* 모달 닫음 */
-    closeDiaryModal();
+    // closeDiaryModal();
+    /* 등록 완료됐다는 모달 */
+    submitDiaryModal()
 };
 
 
@@ -307,10 +302,6 @@ diaryListArea.addEventListener("click", (event) => {
     const deleteButton =
         event.target.closest(".delete-button");
 
-    /*
-     * 삭제 버튼이 아닌 카드 영역을 클릭한 경우
-     * 삭제 기능 실행하지 않음
-     */
     if (deleteButton === null) {
         return;
     }
@@ -389,9 +380,22 @@ function closeDiaryModal() {
 
     diaryModal.setAttribute("aria-hidden", "true");
 }
+
+function submitDiaryModal() {
+    successDiaryModal.classList.add("is-open");
+}
+function closeSubmitDiaryModal() {
+    successDiaryModal.classList.remove("is-open");
+}
+
+/* 모달 관련 eventlistener 추가*/
 openDiaryModalButton.addEventListener("click", openDiaryModal);
 
-closeDiaryModalButton.addEventListener("click", closeDiaryModal);
+
+closeSubmitDiaryButton.addEventListener("click", () => {
+    closeSubmitDiaryModal();
+    closeDiaryModal();
+});
 
 /* 모달 외에 영역 클릭시 닫기 */
 diaryModal.addEventListener("click", (event) => {
@@ -399,12 +403,27 @@ diaryModal.addEventListener("click", (event) => {
         closeDiaryModal();
     }
 });
+
+/* 등록 완료 모달 바깥 클릭 */
+successDiaryModal.addEventListener("click", (event) => {
+    if (event.target === successDiaryModal) {
+        closeSubmitDiaryModal();
+        closeDiaryModal();
+    }
+});
 /* ESC로 닫기*/
 document.addEventListener("keydown", (event) => {
-    if (
-        event.key === "Escape" &&
-        diaryModal.classList.contains("is-open")
-    ) {
+    if (event.key !== "Escape") {
+        return;
+    }
+
+    if (successDiaryModal.classList.contains("is-open")) {
+        closeSubmitDiaryModal();
+        closeDiaryModal();
+        return;
+    }
+
+    if (diaryModal.classList.contains("is-open")) {
         closeDiaryModal();
     }
 });

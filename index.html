@@ -55,7 +55,7 @@
                     <div class="diary-navigator">
                         <button
                                 type="button"
-                                id="openDiaryModalButton"
+                                id="open-diary-modal-button"
                                 class="tab"
                         >
                             + 일기쓰기
@@ -90,27 +90,18 @@
 
 <!-- 일기 작성 모달 -->
 <div
-        id="diaryModal"
+        id="diary-modal"
         class="form-grid"
         role="dialog"
         aria-modal="true"
-        aria-labelledby="diaryModalTitle"
+        aria-labelledby="diary-modal-title"
         aria-hidden="true"
 >
     <div class="form-panel">
-        <button
-                type="button"
-                id="closeDiaryModalButton"
-                class="modal-close-button"
-                aria-label="일기 작성 창 닫기"
-        >
-            ×
-        </button>
-
-        <form id="diaryForm">
+        <form id="diary-form">
             <div class="form-fields">
                 <div class="field">
-                    <h3 id="diaryModalTitle">일기 쓰기</h3>
+                    <h3 id="diary-modal-title">일기 쓰기</h3>
 
                     <label>오늘 기분은 어땠나요?</label>
 
@@ -164,10 +155,10 @@
                 </div>
 
                 <div class="field">
-                    <label for="titleInput">제목</label>
+                    <label for="title-input">제목</label>
 
                     <input
-                            id="titleInput"
+                            id="title-input"
                             type="text"
                             placeholder="제목을 입력해 주세요."
                             required
@@ -175,10 +166,10 @@
                 </div>
 
                 <div class="field">
-                    <label for="contentInput">내용</label>
+                    <label for="content-input">내용</label>
 
                     <textarea
-                            id="contentInput"
+                            id="content-input"
                             placeholder="내용을 입력해 주세요."
                             required
                     ></textarea>
@@ -186,13 +177,26 @@
 
                 <button
                         class="form-btn"
-                        id="submitButton"
+                        id="submit-diary-button"
                         type="submit"
                 >
                     일기 등록하기
                 </button>
             </div>
         </form>
+    </div>
+
+    <!-- 등록 완료 모달 -->
+    <div id="success-diary-modal" class="success-modal">
+        <div class="nesting-modal">
+            <div class="nesting-modal-title">
+                일기 등록 완료
+            </div>
+            <p>등록이 완료되었습니다.</p>
+            <button id="close-submit-diary-button" type="button">
+                확인
+            </button>
+        </div>
     </div>
 </div>
 </body>
