@@ -427,3 +427,8 @@ document.addEventListener("keydown", (event) => {
         closeDiaryModal();
     }
 });
+
+/* 상세페이지 이동 */
+function detail(id){
+    location.href="./diary-detail?id=" + id;
+}
