@@ -34,6 +34,13 @@ body {
 
     margin: 0 auto;
 }
+a{
+    text-decoration: none;
+    color: var(--text);
+}
+a:hover{
+    cursor: pointer;
+}
 
 /* 감정상태 */
 .emotion-state{
@@ -43,10 +50,31 @@ body {
 }
 .mood-class{
     font-size: 20px;
+    font-weight: bold;
 }
 .mood-img img{
     width:32px;
     height:32px;
+}
+/* 글자 색상 변경 */
+.mood-class.happy {
+    color: #F4677A;
+}
+
+.mood-class.sad {
+    color: #6DA5FA;
+}
+
+.mood-class.surprised {
+    color: #FFD666;
+}
+
+.mood-class.angry {
+    color: #B0B3C4;
+}
+
+.mood-class.etc {
+    color: #B791FFFF;
 }
 .diary-date{
     margin-left: auto;
@@ -150,7 +178,7 @@ body {
 }
 
 .comment-list {
-    width: 80%;
+    width: calc(100% - 92px);
 }
 
 .comment-item {
@@ -172,4 +200,31 @@ body {
 .comment-date {
     color: #777;
     white-space: nowrap;
+}
+/* 내용 복사 */
+.copy-toast{
+    display: none;
+
+    position: fixed;
+    left:80%;
+    bottom: 20px;
+    width: 100px;
+    height: 60px;
+
+    color:var(--text);
+    background-color: var(--white);
+
+    text-align: center;
+    border:none;
+
+    animation-name: content-copy-animation;
+    animation-duration: 3s;
+}
+@keyframes content-copy-animation {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
 }

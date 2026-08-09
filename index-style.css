@@ -28,6 +28,7 @@ html {
 
 body {
     margin: 0;
+    min-width: 360px;
 
     background-color: var(--bg);
     color: var(--text);
@@ -61,7 +62,13 @@ body {
 
     font-size: 1.5rem;
 }
-
+.main-header a{
+    text-decoration: none;
+    color: var(--text);
+}
+.main-header a:hover{
+    cursor: pointer;
+}
 /* =========================
    상단 보관함 메뉴
 ========================= */
@@ -255,7 +262,7 @@ body {
 
 /* 감정별 배경색 */
 .diary-card.happy .diary-image-area {
-    background-color: var(--happy);
+    background-color: var(--pink);
 }
 
 .diary-card.sad .diary-image-area {
@@ -263,19 +270,15 @@ body {
 }
 
 .diary-card.surprised .diary-image-area {
-    background-color: var(--purple);
-}
-
-.diary-card.depressed .diary-image-area {
-    background-color: var(--gray);
+    background-color: var(--happy);
 }
 
 .diary-card.angry .diary-image-area {
-    background-color: var(--pink);
+    background-color: var(--gray);
 }
 
 .diary-card.etc .diary-image-area {
-    background-color: var(--blue);
+    background-color: var(--purple);
 }
 
 /* 감정 이모지 원 */
@@ -363,8 +366,11 @@ body {
     margin: 8px 0 0;
 
     font-size: 15px;
+    line-height: 1.4;
 
-    overflow-wrap: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 /* 일기 미리보기 */
@@ -375,17 +381,16 @@ body {
 
     font-size: 13px;
 
-    overflow-wrap: break-word;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 /* =========================
    일기 작성 모달
 ========================= */
 
-/*
-    기본 상태에서는 모달을 숨긴다.
-    JavaScript에서 .form-grid에 .is-open 클래스를 추가하면 열린다.
-*/
 .form-grid {
     position: fixed;
     inset: 0;
@@ -401,10 +406,6 @@ body {
     background-color: rgba(0, 0, 0, 0.45);
 }
 
-/* 모달이 열린 상태 */
-.form-grid.is-open {
-    display: flex;
-}
 
 /* 모달이 열렸을 때 body 스크롤 방지용 */
 body.modal-open {
@@ -579,10 +580,6 @@ body.modal-open {
     z-index: 2000;
 }
 
-.success-modal.is-open {
-    display: flex;
-}
-
 .nesting-modal {
     width: min(90%, 480px);
 
@@ -744,6 +741,7 @@ body.modal-open {
 ========================= */
 
 @media (max-width: 779px) {
+
     .container {
         width: min(calc(100% - 24px), 360px);
         max-width: none;
@@ -851,6 +849,7 @@ body.modal-open {
 
     .diary-card {
         width: 100%;
+        height: 192px;
         min-width: 0;
 
         border-radius: 10px;

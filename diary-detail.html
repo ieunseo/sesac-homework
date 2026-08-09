@@ -8,7 +8,9 @@
 </head>
 <body><div class="container">
         <header class="main-header">
-            <h2>은서의 다이어리</h2>
+            <h2>
+                <a href="./index.html">은서의 다이어리</a>
+            </h2>
         </header>
         <div class="diary-dtail-area">
             <!-- 타이틀 -->
@@ -35,12 +37,13 @@
                     <button class="diary-detail-btn">삭제</button>
                 </div>
             </div>
+
             <hr>
             <p class="comment-title-area">회고</p>
             <section class="comment-area">
-                <form id="commentForm" class="comment-area">
+                <form id="comment-form" class="comment-area">
                     <input
-                        id="commentInput"
+                        id="comment-input"
                         type="text"
                         placeholder="회고를 남겨보세요."
                         required
@@ -53,10 +56,16 @@
                         입력
                     </button>
                 </form>
+
             </section>
-            <!-- 댓글이 생길곳 -->
+            <div class="comment-list"> 등록된 회고가 없습니다. </div>
+
 
         </div>
     </div>
+
+<div class="copy-toast">
+    복사되었어요
+</div>
 </body>
 </html>
