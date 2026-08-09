@@ -17,6 +17,7 @@
     --white: #ffffff;
 }
 
+
 /* 전체 요소 기본 설정 */
 * {
     box-sizing: border-box;
@@ -28,128 +29,158 @@ body {
     background-color: var(--white);
     color: var(--text);
 }
+
 .container {
     width: 1168px;
     max-width: calc(100% - 40px);
 
     margin: 0 auto;
 }
-a{
-    text-decoration: none;
+
+a {
     color: var(--text);
+
+    text-decoration: none;
 }
-a:hover{
+
+a:hover {
     cursor: pointer;
 }
 
-/* 감정상태 */
-.emotion-state{
+
+/* 감정 상태 */
+.emotion-state {
     display: flex;
     align-items: center;
+
     gap: 20px;
 }
-.mood-class{
+
+.mood-class {
     font-size: 20px;
     font-weight: bold;
 }
-.mood-img img{
-    width:32px;
-    height:32px;
+
+.mood-img img {
+    width: 32px;
+    height: 32px;
 }
-/* 글자 색상 변경 */
+
+
+/* 감정별 글자 색상 */
 .mood-class.happy {
-    color: #F4677A;
+    color: #f4677a;
 }
 
 .mood-class.sad {
-    color: #6DA5FA;
+    color: #6da5fa;
 }
 
 .mood-class.surprised {
-    color: #FFD666;
+    color: #ffd666;
 }
 
 .mood-class.angry {
-    color: #B0B3C4;
+    color: #b0b3c4;
 }
 
 .mood-class.etc {
-    color: #B791FFFF;
+    color: #b791ff;
 }
-.diary-date{
+
+.diary-date {
     margin-left: auto;
 }
-.diary-content{
-    font-size:16px;
+
+
+/* 일기 내용 */
+.diary-content {
+    font-size: 16px;
 }
-.action-area{
+
+
+/* 내용 복사, 수정 및 삭제 영역 */
+.action-area {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+
     gap: 10px;
 }
-/* copy btn */
+
 .content-copy {
     display: flex;
     align-items: center;
-    gap: 6px;
-    cursor: pointer;
-}
-/* alter / delete btn */
-.diary-detail-btn{
-    background-color: var(--white);
-    border: 1px solid var(--gray);
-    border-radius: 10px;
-    padding: 8px;
-    font-size:18px;
 
-}
-.diary-detail-btn:hover{
+    gap: 6px;
+
     cursor: pointer;
 }
+
 .diary-detail-btn-area {
     display: flex;
+
     gap: 8px;
 }
-.comment-section {
-    width: 100%;
-    margin-top: 30px;
+
+.diary-detail-btn {
+    padding: 8px;
+
+    border: 1px solid var(--gray);
+    border-radius: 10px;
+
+    background-color: var(--white);
+
+    font-size: 18px;
 }
-.comment-title-area{
-    font-size:24px;
+
+.diary-detail-btn:hover {
+    cursor: pointer;
 }
+
+
+/* 회고 제목 */
+.comment-title-area {
+    font-size: 24px;
+}
+
 .comment-title {
     display: inline-block;
+
     margin: 0 0 20px;
+
+    border-bottom: 4px solid #2f9de4;
 
     font-size: 16px;
     font-weight: 700;
-
-    border-bottom: 4px solid #2f9de4;
 }
 
+
+/* 회고 입력 영역 */
 .comment-area {
     width: 100%;
 
     display: flex;
     align-items: stretch;
-    gap: 20px;
 
+    gap: 20px;
     margin-bottom: 12px;
 }
 
 .comment-area input {
-    flex: 1;
-    min-width: 0;
     height: 56px;
+    min-width: 0;
+
+    flex: 1;
 
     padding: 0 18px;
 
     border: 1px solid #d6d6d6;
     border-radius: 9px;
 
-    font-size: 18px;
     outline: none;
+
+    font-size: 18px;
 }
 
 .comment-area input::placeholder {
@@ -174,19 +205,23 @@ a:hover{
 
     font-size: 17px;
     font-weight: 700;
+
     cursor: pointer;
 }
 
+
+/* 회고 목록 */
 .comment-list {
     width: calc(100% - 92px);
 }
 
 .comment-item {
+    min-height: 58px;
+
     display: flex;
     align-items: center;
-    gap: 14px;
 
-    min-height: 58px;
+    gap: 14px;
 
     border-bottom: 1px solid #ddd;
 
@@ -199,32 +234,133 @@ a:hover{
 
 .comment-date {
     color: #777;
+
     white-space: nowrap;
 }
-/* 내용 복사 */
-.copy-toast{
+
+
+/* 내용 복사 토스트 */
+.copy-toast {
     display: none;
 
     position: fixed;
-    left:80%;
+    left: 80%;
     bottom: 20px;
+
     width: 100px;
     height: 60px;
 
-    color:var(--text);
+    border: none;
+
     background-color: var(--white);
+    color: var(--text);
 
     text-align: center;
-    border:none;
 
     animation-name: content-copy-animation;
     animation-duration: 3s;
 }
+
 @keyframes content-copy-animation {
-    from{
+    from {
         opacity: 0;
     }
-    to{
+
+    to {
         opacity: 1;
     }
+}
+
+
+/* 삭제 모달 배경 */
+.delete-modal {
+    display: none;
+
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+
+    align-items: center;
+    justify-content: center;
+
+    background-color: rgba(0, 0, 0, 0.45);
+}
+
+
+/* 삭제 모달 창 */
+.delete-modal-content {
+    width: 480px;
+    height: 200px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 40px;
+    padding: 24px;
+
+    border-radius: 20px;
+
+    background-color: var(--white);
+}
+
+
+/* 모달 제목 및 설명 */
+.delete-modal-text-area {
+    height: 64px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 16px;
+}
+
+.delete-modal-content h3 {
+    margin: 0;
+
+    font-size: 24px;
+    line-height: 24px;
+}
+
+.delete-modal-content p {
+    margin: 0;
+
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 24px;
+}
+
+
+/* 모달 버튼 영역 */
+.delete-modal-button-area {
+    display: flex;
+
+    gap: 16px;
+}
+
+.delete-modal-button-area button {
+    width: 104px;
+    height: 48px;
+
+    padding: 8px 10px;
+
+    border: 1px solid var(--text);
+    border-radius: 8px;
+
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 24px;
+
+    cursor: pointer;
+}
+
+#cancel-delete-button {
+    background-color: var(--white);
+    color: var(--text);
+}
+
+#confirm-delete-button {
+    background-color: var(--button);
+    color: var(--white);
 }

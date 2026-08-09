@@ -16,6 +16,18 @@ const commentInput = document.querySelector("#comment-input");
 const commentForm = document.querySelector("#comment-form");
 const commentList = document.querySelector(".comment-list");
 
+/* 모달 관련 요소 */
+const deleteButton =
+    document.querySelector("#diary-delete-btn");
+
+const deleteModal =
+    document.querySelector("#delete-modal");
+
+const cancelDeleteButton =
+    document.querySelector("#cancel-delete-button");
+
+const confirmDeleteButton =
+    document.querySelector("#confirm-delete-button");
 
 /* 감정 이미지 */
 const getMoodImage = (mood) => {
@@ -250,6 +262,45 @@ contentCopy.addEventListener("click", () => {
 
     document.querySelector(".copy-toast").style.display =
         "block";
+});
+
+/* 모달 */
+
+deleteButton.addEventListener("click", () => {
+    deleteModal.style.display = "flex";
+});
+cancelDeleteButton.addEventListener("click", () => {
+    deleteModal.style.display = "none";
+});
+
+/* 모달 닫기 */
+deleteModal.addEventListener("click", (event) => {
+    if (event.target === deleteModal) {
+        deleteModal.style.display = "none";
+    }
+});
+
+document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+        deleteModal.style.display = "none";
+    }
+});
+
+/* 일기 삭제 */
+confirmDeleteButton.addEventListener("click", () => {
+    /* 현재 일기 삭제 */
+    diaryListData = diaryListData.filter((diary) => {
+        return diary.id !== diaryId;
+    });
+
+    /* 현재 일기의 회고 삭제 */
+    commentListData = commentListData.filter((comment) => {
+        return comment.diaryId !== diaryId;
+    });
+
+    saveData();
+
+    location.href = "./index.html";
 });
 
 
