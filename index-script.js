@@ -446,61 +446,6 @@ const handleSubmit = (event) => {
 };
 
 
-/* =========================
-   일기 삭제
-========================= */
-
-diaryListArea.addEventListener("click", (event) => {
-
-    const deleteButton =
-        event.target.closest(
-            ".delete-button"
-        );
-
-
-    /*
-     * 삭제 버튼이 아니라면
-     * 여기서는 아무것도 하지 않음
-     */
-    if (deleteButton === null) {
-        return;
-    }
-
-
-    /* 상세페이지 이동 이벤트 방지 */
-    event.stopPropagation();
-
-
-    const diaryId =
-        Number(
-            deleteButton.dataset.id
-        );
-
-
-    /* 해당 일기 삭제 */
-    diaryListData =
-        diaryListData.filter((diary) => {
-            return diary.id !== diaryId;
-        });
-
-
-    /*
-     * 해당 일기에 작성된 댓글도 삭제
-     */
-    commentListData =
-        commentListData.filter((comment) => {
-            return comment.diaryId !== diaryId;
-        });
-
-
-    /* 변경된 데이터 저장 */
-    saveData();
-
-
-    /* 화면 다시 출력 */
-    renderDiaryList();
-});
-
 
 /* =========================
    일기 검색
@@ -681,29 +626,48 @@ function detail(id) {
 }
 
 
-/* 일기 카드 클릭 시 상세페이지 이동 */
-diaryListArea.addEventListener(
-    "click",
-    (event) => {
+diaryListArea.addEventListener("click", (event) => {
 
-        const diaryCard =
-            event.target.closest(
-                ".diary-card"
-            );
+    /* 삭제 버튼 클릭 */
+    const deleteButton =
+        event.target.closest(".delete-button");
 
-
-        if (diaryCard === null) {
-            return;
-        }
-
+    if (deleteButton !== null) {
 
         const diaryId =
-            diaryCard.dataset.id;
+            Number(deleteButton.dataset.id);
 
+        diaryListData =
+            diaryListData.filter((diary) => {
+                return diary.id !== diaryId;
+            });
 
-        detail(diaryId);
+        commentListData =
+            commentListData.filter((comment) => {
+                return comment.diaryId !== diaryId;
+            });
+
+        saveData();
+
+        renderDiaryList();
+
+        return;
     }
-)
+
+
+    /* 일기 카드 클릭 */
+    const diaryCard =
+        event.target.closest(".diary-card");
+
+    if (diaryCard === null) {
+        return;
+    }
+
+    const diaryId =
+        diaryCard.dataset.id;
+
+    detail(diaryId);
+});
 /* banner 일기보관함 / 사진보관함 이동 */;
 diaryAlbum.addEventListener("click", (event) => {
     if (location.href.includes("index.html")) {
