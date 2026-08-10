@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="./photo-style.css">
+  <script src="photo-script.js" defer></script>
+    <meta charset="UTF-8">
+    <title>사진보관함</title>
+
+</head>
+<body>
+<div class="container">
+  <header class="main-header">
+    <h2>
+      <a href="./index.html">은서의 다이어리</a>
+    </h2>
+  </header>
+
+    <main>
+      <section class="diary-section">
+        <div class="diary-banner">
+          <p id="diary-album">일기보관함</p>
+          <p id="photo-album">사진보관함</p>
+        </div>
+      </section>
+      <section class="album-section">
+        <select
+                id="photo-filter"
+                class="photo-filter"
+                aria-label=" 사진 필터"
+        >
+          <option value="all">전체</option>
+          <option value="width">가로형</option>
+          <option value="height">세로형</option>
+
+        </select>
+        <div class="photos-container" id="photo-container">
+
+        </div>
+      </section>
+    </main>
+    </div>
+<!-- 상단 이동 버튼 -->
+<button
+        type="button"
+        id="scroll-top-button"
+        class="scroll-top-button"
+        aria-label="맨 위로 이동"
+>
+  <img
+          src="./img/up_outline_light_xl.svg"
+          width="40"
+          height="40"
+          alt=""
+  >
+</button>
+
+</body>
+</html>

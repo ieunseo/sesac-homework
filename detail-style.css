@@ -364,3 +364,28 @@ a:hover {
     background-color: var(--button);
     color: var(--white);
 }
+/* 상단 이동 버튼 */
+.scroll-top-button {
+    position: fixed;
+    right: 40px;
+    bottom: 40px;
+    z-index: 200;
+
+    width: 40px;
+    height: 40px;
+
+    padding: 0;
+
+    border: none;
+
+    background-color: transparent;
+
+    cursor: pointer;
+}
+
+.scroll-top-button img {
+    width: 40px;
+    height: 40px;
+
+    display: block;
+}

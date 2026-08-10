@@ -82,9 +82,13 @@ body {
 
 .diary-banner p {
     margin: 16px 0;
-
+    color: #ABABAB;
     white-space: nowrap;
     cursor: pointer;
+}
+#diary-album{
+    color: var(--text);
+    border-bottom: 2px solid var(--text);
 }
 
 /* =========================
@@ -301,6 +305,7 @@ body {
     width: 96px;
     height: 96px;
 
+    object-fit: cover;
     display: block;
 }
 

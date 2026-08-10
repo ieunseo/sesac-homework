@@ -21,6 +21,9 @@ const searchInput = document.getElementById("search-input");
 
 const scrollTopButton = document.getElementById("scroll-top-button");
 
+const diaryAlbum = document.getElementById("diary-album");
+const photoAlbum = document.getElementById("photo-album");
+
 
 /* 모달 요소 */
 const diaryModal = document.getElementById("diary-modal");
@@ -700,4 +703,18 @@ diaryListArea.addEventListener(
 
         detail(diaryId);
     }
-);
+)
+/* banner 일기보관함 / 사진보관함 이동 */;
+diaryAlbum.addEventListener("click", (event) => {
+    if (location.href.includes("index.html")) {
+        return;
+    }
+    document.location.href = "./index.html";
+})
+
+photoAlbum.addEventListener("click", (event) => {
+    if(location.href.includes("./photo.html")) {
+        return;
+    }
+    document.location.href = "./photo.html";
+})

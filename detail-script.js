@@ -10,6 +10,7 @@ let selectData = {};
 /* 댓글 */
 let commentListData = [];
 
+const scrollTopButton = document.getElementById("scroll-top-button");
 
 /* 댓글 관련 요소 */
 const commentInput = document.querySelector("#comment-input");
@@ -308,7 +309,18 @@ confirmDeleteButton.addEventListener("click", () => {
 if (selectData !== undefined) {
     diaryContent();
 }
+/* 상단 이동 */
+scrollTopButton.addEventListener(
+    "click",
+    () => {
 
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    }
+);
 
 /* 처음 진입시 랜더링 */
 renderCommentList();

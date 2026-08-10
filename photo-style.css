@@ -1,0 +1,154 @@
+:root {
+    --bg: #f6f3ee;
+    --panel: #ffffff;
+    --text: #1f1f1f;
+    --subtext: #666;
+    --line: #e7dfd6;
+    --shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+
+    --happy: #fff4c7;
+    --sad: #dff2ff;
+    --blue: #d9f0ff;
+    --purple: #eadcff;
+    --gray: #eef0f3;
+    --pink: #ffe1e8;
+
+    --button: #1f1f1f;
+    --white: #ffffff;
+}
+
+/* 전체 요소 기본 설정 */
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-width: 360px;
+
+    background-color: var(--bg);
+    color: var(--text);
+}
+
+/*
+    PC 화면 기준
+    전체 화면 191.25rem;
+    컨테이너 1168px
+    좌우 여백 각각 376px
+
+    (191.25rem; - 1168px) / 2 = 376px
+*/
+.container {
+    width: 1168px;
+    max-width: calc(100% - 40px);
+
+    margin: 0 auto;
+}
+
+/* =========================
+   상단 제목
+========================= */
+
+.main-header {
+    padding: 24px 0 10px;
+}
+
+.main-header h2 {
+    margin: 0;
+
+    font-size: 1.5rem;
+}
+.main-header a{
+    text-decoration: none;
+    color: var(--text);
+}
+.main-header a:hover{
+    cursor: pointer;
+}
+/* =========================
+   상단 보관함 메뉴
+========================= */
+
+.diary-banner {
+    display: flex;
+    align-items: center;
+
+    gap: 1.25rem;
+}
+
+.diary-banner p {
+    margin: 16px 0;
+    color: #ABABAB;
+    white-space: nowrap;
+    cursor: pointer;
+}
+#photo-album{
+     color: var(--text);
+     border-bottom: 2px solid var(--text);
+ }
+
+/* 감정 필터 */
+.photo-filter {
+    width: 100px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 15px;
+    flex-shrink: 0;
+
+    padding: 0 12px;
+
+    border: 1px solid #ccc;
+    border-radius: 10px;
+
+    background-color: var(--white);
+}
+.album-section {
+    margin-top: 15px;
+}
+/* 이미지 */
+img {
+    width:640px;
+    height:640px;
+    object-fit: cover;
+    border-radius:16px ;
+
+}
+.photos-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 40px;
+}
+/* 상단 이동 버튼 */
+.scroll-top-button {
+    position: fixed;
+    right: 40px;
+    bottom: 40px;
+    z-index: 200;
+
+    width: 40px;
+    height: 40px;
+
+    padding: 0;
+
+    border: none;
+
+    background-color: transparent;
+
+    cursor: pointer;
+}
+
+.scroll-top-button img {
+    width: 40px;
+    height: 40px;
+
+    display: block;
+}
