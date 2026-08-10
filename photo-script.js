@@ -3,9 +3,7 @@ const STORAGE_KEY = "emotionDiary";
 const diaryAlbum = document.getElementById("diary-album");
 const photoAlbum = document.getElementById("photo-album");
 const scrollTopButton = document.getElementById("scroll-top-button");
-const photoDefault = document.getElementById("photo-default");
-const photoWidth = document.getElementById("photo-width");
-const photoHeight = document.getElementById("photo-height");
+const photoContainer = document.getElementById("photo-container");
 
 diaryAlbum.addEventListener("click", () => {
     if (location.href.includes("index.html")) {
@@ -38,31 +36,42 @@ scrollTopButton.addEventListener(
 
 const target = document.getElementById("photo-filter");
 
+const changePhotoRatio = (e) => {
+    const value = e.target.value;
 
+    const photos = document.querySelectorAll(".photos");
 
-const changePhotoRatio = (e) =>{
-    console.log("change Photo Ratio");
-    switch(e){
-        case "default":
-            target.style.aspectRatio=" 1 / 1";
-            pictures();
-            break;
-        case "width":
-            target.style.aspectRatio=" 4 / 3";
-            pictures();
-            break;
-        case "height":
-            target.style.aspectRatio=" 3 / 4";
-            pictures();
-            break;
+    photos.forEach((photo) => {
+        switch (value) {
+            case "default":
+                photo.style.aspectRatio = "1 / 1";
+                break;
 
-    }
-}
+            case "width":
+                photo.style.aspectRatio = "4 / 3";
+                break;
 
-target.addEventListener("change", changePhotoRatio(target));
+            case "height":
+                photo.style.aspectRatio = "3 / 4";
+                break;
+        }
+    });
+};
+
+target.addEventListener("change", changePhotoRatio);
 
 // 화면 로딩되자마자 fetch 를 실행해야함.
 const pictures = () =>{
+    /* 사진 로딩 전 스켈레톤 이미지 */
+    let skeletonHTML = "";
+
+    for (let i = 0; i < 10; i++) {
+        skeletonHTML += `
+            <div class="photo-skeleton"></div>
+        `;
+    }
+    document.getElementById("photo-container").innerHTML =
+        skeletonHTML;
     fetch("https://dog.ceo/api/breeds/image/random/10")
         .then(res => res.json())
         .then(data => {
