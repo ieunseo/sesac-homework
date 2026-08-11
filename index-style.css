@@ -15,6 +15,9 @@
 
     --button: #1f1f1f;
     --white: #ffffff;
+
+    --dropdowntext:#299c00;
+    --dropdownbg:#D3F3E0;
 }
 
 /* 전체 요소 기본 설정 */
@@ -631,6 +634,49 @@ body.modal-open {
 
     cursor: pointer;
 }
+/* =========================
+   모달 다크모드
+========================= */
+/* 다크모드 */
+.dark-mode{
+    display: flex;
+    align-items: center;
+    font-size:12px;
+}
+.dark-toggle {
+    right:90%;
+    appearance: none;
+    width:40px;
+    height:24px;
+    background-color: lightgray;
+    border-radius:20px;
+    padding:2px; /* 스위치 버튼처럼 보이기 위해 버튼과의 살짝 간격*/
+}
+.dark-toggle::after{
+    display:block;
+    content:"";
+    width:20px;
+    height:20px;
+    background-color:white;
+    border-radius: 50%;
+
+    transition:transform 0.3s ease; /* 부드러운 이동 효과 */
+}
+
+.dark-toggle:checked{
+    background-color: lime; /* 체크 되었을때 배경 색이 변경*/
+}
+
+.dark-toggle:checked::after{
+    transform:translateX(calc(100% - 2px - 2px));
+}
+
+.modal-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
 
 /* =========================
    일기 상세 보기
@@ -823,7 +869,7 @@ body.modal-open {
         font-size: 14px;
     }
 
-    /* 감정 필터 */
+     /*감정 필터*/
     .emotion-filter {
         grid-column: 1;
         grid-row: 2;
@@ -1024,4 +1070,3 @@ body.modal-open {
         height: 40px;
     }
 }
-
