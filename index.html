@@ -31,18 +31,106 @@
 
             <div class="diary-header">
                 <div class="filter-area">
-                    <select
-                            id="emotion-filter"
-                            class="emotion-filter"
-                            aria-label="감정 필터"
-                    >
-                        <option value="all">전체</option>
-                        <option value="happy">행복해요</option>
-                        <option value="sad">슬퍼요</option>
-                        <option value="surprised">놀랐어요</option>
-                        <option value="angry">화나요</option>
-                        <option value="etc">기타</option>
-                    </select>
+                    <div class="emotion-dropdown">
+                        <!-- 드롭다운 열기/닫기 -->
+                        <input
+                                type="checkbox"
+                                id="emotion-dropdown-toggle"
+                                class="emotion-dropdown-toggle"
+                        >
+
+                        <!-- 현재 선택값 -->
+                        <label
+                                for="emotion-dropdown-toggle"
+                                id="emotion-dropdown-title"
+                                class="emotion-dropdown-title"
+                        >
+                            <span id="selected-emotion-text">전체</span>
+                            <img class="dropdown-arrow" src="./img/down_fill_light_m.svg"/>
+                        </label>
+
+                        <!-- 드롭다운 목록 -->
+                        <ul class="emotion-dropdown-list">
+                            <li>
+                                <input
+                                        type="radio"
+                                        name="emotion-filter"
+                                        id="emotion-all"
+                                        value="all"
+                                        checked
+                                >
+                                <label for="emotion-all">
+                                    <span>전체</span>
+                                    <img class="check-icon" src="./img/check_outline_light_xs.svg"/>
+                                </label>
+                            </li>
+
+                            <li>
+                                <input
+                                        type="radio"
+                                        name="emotion-filter"
+                                        id="emotion-happy"
+                                        value="happy"
+                                >
+                                <label for="emotion-happy">
+                                    <span>행복해요</span>
+                                    <img class="check-icon" src="./img/check_outline_light_xs.svg"/>
+                                </label>
+                            </li>
+
+                            <li>
+                                <input
+                                        type="radio"
+                                        name="emotion-filter"
+                                        id="emotion-sad"
+                                        value="sad"
+                                >
+                                <label for="emotion-sad">
+                                    <span>슬퍼요</span>
+                                    <img class="check-icon" src="./img/check_outline_light_xs.svg"/>
+                                </label>
+                            </li>
+
+                            <li>
+                                <input
+                                        type="radio"
+                                        name="emotion-filter"
+                                        id="emotion-surprised"
+                                        value="surprised"
+                                >
+                                <label for="emotion-surprised">
+                                    <span>놀랐어요</span>
+                                    <img class="check-icon" src="./img/check_outline_light_xs.svg"/>
+                                </label>
+                            </li>
+
+                            <li>
+                                <input
+                                        type="radio"
+                                        name="emotion-filter"
+                                        id="emotion-angry"
+                                        value="angry"
+                                >
+                                <label for="emotion-angry">
+                                    <span>화나요</span>
+                                    <img class="check-icon" src="./img/check_outline_light_xs.svg"/>
+                                </label>
+                            </li>
+
+                            <li>
+                                <input
+                                        type="radio"
+                                        name="emotion-filter"
+                                        id="emotion-etc"
+                                        value="etc"
+                                >
+                                <label for="emotion-etc">
+                                    <span>기타</span>
+                                    <img class="check-icon" src="./img/check_outline_light_xs.svg"/>
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
 
                     <div class="filter-search-area">
                         <span aria-hidden="true">🔎</span>

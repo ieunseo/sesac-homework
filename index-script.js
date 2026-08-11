@@ -18,14 +18,16 @@ const diaryListArea = document.getElementById("diary-list-area");
 const titleInput = document.getElementById("title-input");
 const contentInput = document.getElementById("content-input");
 
-const emotionFilter = document.getElementById("emotion-filter");
 const searchInput = document.getElementById("search-input");
 
 const scrollTopButton = document.getElementById("scroll-top-button");
 
 const diaryAlbum = document.getElementById("diary-album");
 const photoAlbum = document.getElementById("photo-album");
+const emotionFilterInputs = document.querySelectorAll('input[name="emotion-filter"]');
+const emotionDropdownToggle = document.getElementById("emotion-dropdown-toggle");
 
+const selectedEmotionText = document.getElementById("selected-emotion-text");
 
 /* 모달 요소 */
 const diaryModal = document.getElementById("diary-modal");
@@ -242,8 +244,7 @@ const getSelectedMood = () => {
 
 const renderDiaryList = () => {
 
-    const selectedEmotion =
-        emotionFilter.value;
+    const selectedEmotion = getSelectedEmotionFilter();
 
     const keyword =
         searchInput.value
@@ -458,13 +459,42 @@ const handleSubmit = (event) => {
 
 
 /* 감정 필터 변경 */
-emotionFilter.addEventListener(
-    "change",
-    () => {
-        renderDiaryList();
-    }
-);
+const getSelectedEmotionFilter = () => {
 
+    let selectedEmotion = "all";
+
+    emotionFilterInputs.forEach((input) => {
+
+        if (input.checked) {
+            selectedEmotion = input.value;
+        }
+
+    });
+
+    return selectedEmotion;
+};
+
+emotionFilterInputs.forEach((input) => {
+
+    input.addEventListener("change", (event) => {
+
+        const selectedLabel =
+            event.target
+                .nextElementSibling
+                .querySelector("span")
+                .textContent;
+
+        selectedEmotionText.textContent =
+            selectedLabel;
+
+        /* 드롭다운 닫기 */
+        emotionDropdownToggle.checked = false;
+
+        /* 선택한 감정으로 일기 다시 출력 */
+        renderDiaryList();
+    });
+
+});
 
 /* 검색어 입력 */
 searchInput.addEventListener(
