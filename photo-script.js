@@ -60,6 +60,30 @@ const changePhotoRatio = (e) => {
 
 target.addEventListener("change", changePhotoRatio);
 
+
+/* 무한스크롤 과 스로틀링 */
+let scrollTimer = "throttle";
+
+window.addEventListener("scroll", () => {
+    if(scrollTimer !== "throttle") return // 바로 종료
+    scrollTimer= setTimeout(() => {
+            scrollTimer = "throttle" //초기화
+        },700)
+
+    const scrollPercent = document.documentElement.scrollTop / (document.documentElement.scrollHeight - document.documentElement.clientHeight)
+    console.log(scrollPercent);
+
+    if(scrollPercent >=0.7){
+        fetch("https://dog.ceo/api/breeds/image/random/10").then(res => res.json().then(data => {
+            const imgURL = data.message;
+            document.getElementById("photo-container").innerHTML =
+                imgURL.map((i) =>
+                    `<img src="${i}" class="photos">`
+                ).join("\n");
+        }))
+    }
+})
+
 // 화면 로딩되자마자 fetch 를 실행해야함.
 const pictures = () =>{
     /* 사진 로딩 전 스켈레톤 이미지 */
