@@ -37,6 +37,7 @@ const closeSubmitDiaryButton = document.getElementById("close-submit-diary-butto
 /* 다크모드 */
 const darkmode = document.querySelector(".dark-toggle");
 const formPanel = document.querySelector(".form-panel");
+const successModal = document.querySelector(".success-modal");
 
 /* =========================
    LocalStorage
@@ -530,7 +531,10 @@ window.addEventListener("load", () => {
 /* 다크모드 색상 변경 */
 darkmode.addEventListener("change", () => {
     formPanel.classList.toggle("modal-dark");
+    successModal.classList.toggle("modal-dark");
+
 })
+
 /* 일기 작성 모달 열기 */
 function openDiaryModal() {
     diaryModal.style.display = "flex";

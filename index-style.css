@@ -483,6 +483,7 @@ body.modal-open {
     display: flex;
     flex-direction: column;
 
+
     gap: 15px;
 }
 
@@ -519,6 +520,7 @@ body.modal-open {
 
     font-size: 14px;
     background-color: var(--white-input);
+    color: var(--text);
 }
 
 /* 내용 입력창 */
@@ -537,6 +539,7 @@ body.modal-open {
     font-size: 14px;
     line-height: 1.6;
     background-color: var(--white-input);
+    color: var(--text);
 }
 
 /* 입력창 포커스 */
@@ -609,6 +612,7 @@ body.modal-open {
     border-radius: 16px;
 
     background-color: var(--white);
+    color: var(--text);
 
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
 
@@ -682,6 +686,18 @@ body.modal-open {
 }
 /* 다크모드 */
 .form-panel.modal-dark{
+    --panel: #333333;
+    --text: #ffffff;
+    --subtext: #cccccc;
+    --line: #444444;
+
+    --button: #ffffff;
+    --white: #333333;
+    --white-input: #000;
+
+    color: var(--text);
+}
+.success-modal.modal-dark{
     --panel: #333333;
     --text: #ffffff;
     --subtext: #cccccc;
