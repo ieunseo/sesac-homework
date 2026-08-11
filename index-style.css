@@ -18,6 +18,8 @@
 
     --dropdowntext:#299c00;
     --dropdownbg:#D3F3E0;
+
+    --white-input:#ffffff;
 }
 
 /* 전체 요소 기본 설정 */
@@ -516,6 +518,7 @@ body.modal-open {
     outline: none;
 
     font-size: 14px;
+    background-color: var(--white-input);
 }
 
 /* 내용 입력창 */
@@ -533,6 +536,7 @@ body.modal-open {
 
     font-size: 14px;
     line-height: 1.6;
+    background-color: var(--white-input);
 }
 
 /* 입력창 포커스 */
@@ -637,8 +641,7 @@ body.modal-open {
 /* =========================
    모달 다크모드
 ========================= */
-/* 다크모드 */
-.dark-mode{
+.dark-mode-area{
     display: flex;
     align-items: center;
     font-size:12px;
@@ -677,7 +680,19 @@ body.modal-open {
     justify-content: space-between;
     width: 100%;
 }
+/* 다크모드 */
+.form-panel.modal-dark{
+    --panel: #333333;
+    --text: #ffffff;
+    --subtext: #cccccc;
+    --line: #444444;
 
+    --button: #ffffff;
+    --white: #333333;
+    --white-input: #000;
+
+    color: var(--text);
+}
 /* =========================
    일기 상세 보기
 ========================= */
@@ -1030,6 +1045,7 @@ body.modal-open {
         padding: 24px 18px;
         -ms-overflow-style: none;
         border-radius: 16px;
+        color: var(--text);
     }
     .form-panel::-webkit-scrollbar{
         display: none;
