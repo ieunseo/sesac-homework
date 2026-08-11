@@ -133,7 +133,7 @@ body {
     position: relative;
 
     width: 120px;
-    flex-shrink: 0;
+    flex: 0 0 120px;
 }
 
 /* 실제 체크박스 숨기기 */
@@ -156,19 +156,19 @@ body {
     border: 1px solid #c9c9c9;
     border-radius: 8px;
 
-    background-color: #ffffff;
+    background-color: var(--white);
     color: #222222;
 
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 500;
 
     cursor: pointer;
 }
 
 /* 아래 방향 화살표 */
 .dropdown-arrow {
-    width: 20px;
-    height: 20px;
+    width: 16px;
+    height: 16px;
 
     transition: transform 0.2s ease;
 }
@@ -183,7 +183,7 @@ body {
 /* 드롭다운 목록 */
 .emotion-dropdown-list {
     position: absolute;
-    top: calc(100% + 10px);
+    top: calc(100% + 8px);
     left: 0;
     z-index: 200;
 
@@ -197,7 +197,7 @@ body {
     border: 1px solid #d0d0d0;
     border-radius: 8px;
 
-    background-color: #ffffff;
+    background-color: var(--white);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 
     list-style: none;
@@ -218,7 +218,7 @@ body {
 /* 각 선택 항목 */
 .emotion-dropdown-list label {
     width: 100%;
-    height: 64px;
+    height: 48px;
 
     display: flex;
     align-items: center;
@@ -226,8 +226,8 @@ body {
 
     padding: 0 16px;
 
-    background-color: #ffffff;
-    color: #666666;
+    background-color: var(--white);
+    color: var(--subtext);
 
     font-size: 18px;
 
@@ -243,16 +243,30 @@ body {
 .check-icon {
     display: none;
 
-    color: #299c00;
-    font-size: 22px;
-    font-weight: 700;
+    width: 18px;
+    height: 18px;
+
+    flex-shrink: 0;
 }
 
 /* 선택된 항목 */
 .emotion-dropdown-list input:checked + label {
-    background-color: #f3fbf1;
-    color: #299c00;
-    font-weight: 700;
+    width: 100%;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 10px;
+    padding: 0 16px;
+
+    background-color: var(--white);
+    color: var(--subtext);
+
+    font-size: 16px;
+
+    cursor: pointer;
 }
 
 /* 선택된 항목의 체크 표시 */
@@ -264,19 +278,20 @@ body {
 
 /* 검색창 전체 */
 .filter-search-area {
-    min-width: 0;
-    height: 40px;
+    width: 320px;
+    min-width: 320px;
+    height: 48px;
 
-    flex: 1;
+    flex: 0 0 320px;
 
     display: flex;
     align-items: center;
 
     gap: 8px;
-    padding: 0 12px;
+    padding: 12px 16px;
 
     border: 1px solid #ccc;
-    border-radius: 10px;
+    border-radius: 8px;
 
     background-color: var(--white);
 }
@@ -293,16 +308,16 @@ body {
     min-width: 0;
     height: 100%;
 
-    flex: 1;
-
     border: none;
     outline: none;
 
     background-color: transparent;
 
-    font-size: 14px;
+    font-size: 16px;
 }
-
+.filter-search-area input::-webkit-search-cancel-button {
+    cursor: pointer;
+}
 /* 일기 쓰기 버튼 영역 */
 .diary-navigator {
     margin-left: auto;
@@ -312,15 +327,17 @@ body {
 
 .diary-navigator button {
     width: 110px;
-    height: 40px;
+    height: 48px;
 
     display: inline-flex;
     align-items: center;
     justify-content: center;
 
-    padding: 0 18px;
+    padding: 8px 10px;
 
-    border-radius: 10px;
+    border: none;
+    border-radius: 8px;
+    font-size:18px;
 
     background-color: var(--button);
     color: var(--white);
@@ -996,10 +1013,9 @@ body.modal-open {
     */
     .filter-area {
         display: grid;
-        grid-template-columns: 100px 1fr;
+        grid-template-columns: 120px 1fr;
 
-        gap: 12px 10px;
-        align-items: center;
+        gap: 12px 8px;
     }
 
     /* 검색창 */
@@ -1009,7 +1025,9 @@ body.modal-open {
 
         width: 100%;
         min-width: 0;
-        height: 40px;
+        height: 48px;
+
+        flex: none;
 
         border-radius: 1.25rem;;
     }
@@ -1020,19 +1038,13 @@ body.modal-open {
         font-size: 14px;
     }
 
-     /*감정 필터*/
-    .emotion-filter {
+     /* 감정 필터 */
+    .emotion-dropdown {
         grid-column: 1;
         grid-row: 2;
 
-        width: 100px;
-        height: 40px;
-
-        padding: 0 8px;
-
-        border-radius: 10px;
-
-        font-size: 14px;
+        width: 120px;
+        font-size:16px;
     }
 
     /* 일기쓰기 버튼 */
@@ -1040,7 +1052,6 @@ body.modal-open {
         grid-column: 2;
         grid-row: 2;
 
-        width: auto;
         margin-left: 0;
 
         justify-self: end;
@@ -1048,13 +1059,7 @@ body.modal-open {
 
     .diary-navigator button {
         width: 110px;
-        height: 40px;
-
-        padding: 0 18px;
-
-        border-radius: 10px;
-
-        font-size: 14px;
+        height: 48px;
     }
 
     /* 모바일에서도 카드 2열 유지.*/
@@ -1201,7 +1206,7 @@ body.modal-open {
     .field textarea,
     .mood-option,
     .form-btn {
-        font-size: 14px;
+        font-size: 16px;
     }
 
     .mood-group {
