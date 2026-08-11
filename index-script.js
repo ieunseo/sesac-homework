@@ -8,6 +8,8 @@ let diaryListData = [];
 /* 댓글 배열 */
 let commentListData = [];
 
+/* 검색 타이머 */
+let searchTimer = "";
 
 /* HTML 요소 */
 const diaryForm = document.getElementById("diary-form");
@@ -272,7 +274,6 @@ const renderDiaryList = () => {
             return matchEmotion && matchSearch;
         });
 
-
     /* 조건에 맞는 일기가 없을 경우 */
     if (visibleList.length === 0) {
 
@@ -468,7 +469,11 @@ emotionFilter.addEventListener(
 searchInput.addEventListener(
     "input",
     () => {
-        renderDiaryList();
+        clearTimeout(searchTimer);
+
+        searchTimer = setTimeout(() => {
+            renderDiaryList();
+        }, 700);
     }
 );
 
