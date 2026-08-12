@@ -1,5 +1,5 @@
 :root {
-    --bg: #f6f3ee;
+    --bg: #ffffff;
     --panel: #ffffff;
     --text: #1f1f1f;
     --subtext: #666;
@@ -377,7 +377,102 @@ body {
 
     text-align: center;
 }
+/* =========================
+   페이지네이션
+========================= */
 
+.pagination {
+    width: 100%;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+    padding: 8px 0 48px;
+}
+
+/* 페이지 번호가 출력되는 영역 */
+.pagination-number-area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+}
+
+/* 페이지 번호 버튼 */
+.pagination-number {
+    width: 32px;
+    height: 32px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: none;
+    border-radius: 8px;
+
+    background-color: transparent;
+    color: #777777;
+
+    font-size: 14px;
+
+    cursor: pointer;
+}
+
+/* 페이지 번호에 마우스를 올렸을 때 */
+.pagination-number:hover {
+    background-color: #eeeeee;
+    color: var(--text);
+}
+
+/* 현재 선택된 페이지 */
+.pagination-number.active {
+    background-color: #eeeeee;
+    color: var(--text);
+
+    font-weight: bold;
+}
+
+/* 이전, 다음 버튼 */
+.pagination-arrow {
+    width: 32px;
+    height: 32px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: none;
+    border-radius: 8px;
+
+    background-color: transparent;
+
+    cursor: pointer;
+}
+
+/* 이전, 다음 이미지 */
+.pagination-arrow img {
+    width: 20px;
+    height: 20px;
+
+    display: block;
+}
+
+/* 오른쪽 화살표를 회전해서 왼쪽 화살표로 사용 */
+.pagination-next img {
+    transform: rotate(180deg);
+}
+
+/* 비활성화 버튼 */
+.pagination-arrow:disabled {
+    cursor: default;
+}
 /* 일기 카드 */
 .diary-card {
     position: relative;
@@ -408,7 +503,7 @@ body {
     align-items: center;
     justify-content: center;
 
-    border-radius: 12px 12px 0 0;
+    border-radius: 12px;
 
     background-color: var(--gray);
 
@@ -1137,7 +1232,22 @@ body.modal-open {
         text-overflow: ellipsis;
         white-space: nowrap;
     }
-
+    /* 감정별 글자 색상 */
+    .diary-card.happy .diary-mood {
+        color: #EA5757;
+    }
+    .diary-card.sad .diary-mood {
+        color: #28B4E1;
+    }
+    .diary-card.surprised .diary-mood {
+        color: #D58B00;
+    }
+    .diary-card.angry .diary-mood {
+        color: #777777;
+    }
+    .diary-card.etc .diary-mood {
+        color: #8F5AE8;
+    }
     .diary-date {
         flex-shrink: 0;
 
@@ -1225,5 +1335,30 @@ body.modal-open {
     .scroll-top-button img {
         width: 40px;
         height: 40px;
+    }
+
+    /* 모바일 페이지네이션 */
+    .pagination {
+        gap: 4px;
+        padding: 8px 0 40px;
+    }
+
+    .pagination-number-area {
+        gap: 2px;
+    }
+
+    .pagination-number,
+    .pagination-arrow {
+        width: 28px;
+        height: 28px;
+    }
+
+    .pagination-number {
+        font-size: 13px;
+    }
+
+    .pagination-arrow img {
+        width: 18px;
+        height: 18px;
     }
 }
