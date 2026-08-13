@@ -68,7 +68,7 @@ const successDiaryModal = document.getElementById("success-diary-modal");
 const closeSubmitDiaryButton = document.getElementById("close-submit-diary-button");
 
 /* 다크모드 */
-const darkmode = document.querySelector(".dark-toggle");
+const darkModeToggles = document.querySelectorAll(".dark-toggle");
 const formPanel = document.querySelector(".form-panel");
 const successModal = document.querySelector(".success-modal");
 
@@ -769,12 +769,22 @@ window.addEventListener("load", () => {
    모달
 ========================= */
 
-/* 다크모드 색상 변경 */
-darkmode.addEventListener("change", () => {
-    formPanel.classList.toggle("modal-dark");
-    successModal.classList.toggle("modal-dark");
+/* 메인 화면과 모달의 다크모드를 함께 변경 */
+const applyDarkMode = (isDarkMode) => {
+    document.body.classList.toggle("dark-mode", isDarkMode);
+    formPanel.classList.toggle("modal-dark", isDarkMode);
+    successModal.classList.toggle("modal-dark", isDarkMode);
 
-})
+    darkModeToggles.forEach((toggle) => {
+        toggle.checked = isDarkMode;
+    });
+};
+
+darkModeToggles.forEach((toggle) => {
+    toggle.addEventListener("change", () => {
+        applyDarkMode(toggle.checked);
+    });
+});
 
 /* 일기 작성 모달 열기 */
 function openDiaryModal() {

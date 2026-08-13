@@ -20,6 +20,19 @@
     --dropdownbg:#D3F3E0;
 
     --white-input:#ffffff;
+    --footer-bg: #f5f5f5;
+    --footer-text: #777777;
+}
+
+body.dark-mode {
+    --bg: #1b1b1b;
+    --panel: #1b1b1b;
+    --text: #f5f5f5;
+    --subtext: #a7a7a7;
+    --line: #444444;
+    --button: #f5f5f5;
+    --white: #1b1b1b;
+    --white-input: #000000;
 }
 
 /* 전체 요소 기본 설정 */
@@ -28,6 +41,8 @@
 }
 
 html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
     scroll-behavior: smooth;
 }
 
@@ -37,6 +52,8 @@ body {
 
     background-color: var(--bg);
     color: var(--text);
+
+    transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 /*
@@ -61,9 +78,17 @@ body {
 .main-header {
     padding: 24px 0 10px;
 }
+.main-header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 40px;
+}
 .main-header img {
     width:100%;
     height:240px;
+    border-radius:16px;
     object-fit: cover;
     display: block;
 }
@@ -79,6 +104,52 @@ body {
 }
 .main-header a:hover{
     cursor: pointer;
+}
+.dark-mode-area {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    color: var(--subtext);
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.dark-toggle {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    width: 40px;
+    height: 24px;
+    padding: 2px;
+
+    border-radius: 20px;
+
+    background-color: lightgray;
+    cursor: pointer;
+}
+
+.dark-toggle::after {
+    display: block;
+
+    width: 20px;
+    height: 20px;
+
+    border-radius: 50%;
+
+    background-color: white;
+    content: "";
+    transition: transform 0.3s ease;
+}
+
+.dark-toggle:checked {
+    background-color: #22c55e;
+}
+
+.dark-toggle:checked::after {
+    transform: translateX(16px);
 }
 /* =========================
    상단 보관함 메뉴
@@ -103,23 +174,123 @@ body {
      border-bottom: 2px solid var(--text);
  }
 
-/* 감정 필터 */
+/* 사진 비율 필터 */
 .photo-filter {
-    width: 100px;
-    height: 40px;
+    position: relative;
+
+    width: 120px;
+    margin-bottom: 24px;
+}
+
+.photo-filter-toggle,
+.photo-filter-list input {
+    display: none;
+}
+
+.photo-filter-title {
+    width: 120px;
+    height: 48px;
 
     display: flex;
     align-items: center;
+    justify-content: space-between;
 
-    gap: 15px;
-    flex-shrink: 0;
+    gap: 10px;
+    padding: 12px 10px;
 
-    padding: 0 12px;
-
-    border: 1px solid #ccc;
-    border-radius: 10px;
+    border: 1px solid #c9c9c9;
+    border-radius: 8px;
 
     background-color: var(--white);
+    color: #222222;
+
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.dropdown-arrow {
+    width: 16px;
+    height: 16px;
+    border-radius: 0;
+
+    transition: transform 0.2s ease;
+}
+
+.photo-filter-toggle:checked + .photo-filter-title .dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+.photo-filter-list {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    z-index: 200;
+
+    display: none;
+
+    width: 120px;
+    margin: 0;
+    padding: 0;
+
+    border: 1px solid #d0d0d0;
+    border-radius: 8px;
+
+    background-color: var(--white);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+    list-style: none;
+    overflow: hidden;
+}
+
+.photo-filter-toggle:checked ~ .photo-filter-list {
+    display: block;
+}
+
+.photo-filter-list label {
+    width: 100%;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 16px;
+
+    background-color: var(--white);
+    color: var(--subtext);
+
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.photo-filter-list label:hover {
+    background-color: #f4fbf2;
+}
+
+.check-icon {
+    display: none;
+
+    width: 18px;
+    height: 18px;
+    border-radius: 0;
+    flex-shrink: 0;
+}
+
+.photo-filter-list input:checked + label .check-icon {
+    display: block;
+}
+
+body.dark-mode .photo-filter-title,
+body.dark-mode .photo-filter-list,
+body.dark-mode .photo-filter-list label {
+    border-color: #444444;
+    background-color: #000000;
+    color: var(--text);
+}
+
+body.dark-mode .photo-filter-list label:hover {
+    background-color: #252525;
 }
 .album-section {
     margin-top: 15px;
@@ -165,9 +336,44 @@ img {
 
     display: block;
 }
+body.dark-mode .scroll-top-button img {
+    filter: invert(1);
+}
+
+/* 푸터 */
+.site-footer {
+    margin-top: 48px;
+    padding: 24px 0 30px;
+
+    background-color: var(--footer-bg);
+    color: var(--footer-text);
+}
+
+.site-footer-inner {
+    width: 1168px;
+    max-width: calc(100% - 40px);
+
+    margin: 0 auto;
+}
+
+.site-footer strong {
+    display: block;
+
+    margin-bottom: 22px;
+
+    color: #1f1f1f;
+    font-size: 16px;
+}
+
+.site-footer p {
+    margin: 0 0 18px;
+
+    font-size: 12px;
+}
 /* 스켈레톤 이미지 */
 .photo-skeleton {
     width: 640px;
+    height: 640px;
     aspect-ratio: 1 / 1;
     border-radius: 16px;
 
@@ -191,5 +397,27 @@ img {
 
     100% {
         background-position: -200% 0;
+    }
+}
+
+@media (max-width: 779px) {
+    .container {
+        width: min(calc(100% - 24px), 360px);
+        max-width: none;
+
+        margin: 0 auto;
+        padding: 0;
+    }
+
+    .main-header {
+        padding: 18px 0 8px;
+    }
+
+    .main-header img {
+        height: 240px;
+    }
+
+    .site-footer-inner {
+        max-width: calc(100% - 24px);
     }
 }

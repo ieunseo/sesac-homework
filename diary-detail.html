@@ -22,6 +22,7 @@
             </label>
         </header>
         <section class="diary-dtail-area">
+            <div id="diary-view-area">
             <!-- 타이틀 -->
             <div class="diary-detail-title">
                 <div class="diary-title">제목</div>
@@ -44,12 +45,43 @@
                     내용복사
                 </div>
                 <div class="diary-detail-btn-area">
-                    <button class="diary-detail-btn" >수정</button>
+                    <button class="diary-detail-btn" id="diary-edit-btn" type="button">수정</button>
                     <button class="diary-detail-btn" id="diary-delete-btn">삭제</button>
                 </div>
             </div>
 
             <hr>
+            </div>
+
+            <form id="diary-edit-form" class="diary-edit-form" hidden>
+                <fieldset class="edit-mood-fieldset">
+                    <legend>오늘 기분은 어땠나요?</legend>
+                    <div class="edit-mood-group">
+                        <label><input type="radio" name="edit-mood" value="행복"> 행복해요</label>
+                        <label><input type="radio" name="edit-mood" value="슬픔"> 슬퍼요</label>
+                        <label><input type="radio" name="edit-mood" value="놀램"> 놀랐어요</label>
+                        <label><input type="radio" name="edit-mood" value="화남"> 화나요</label>
+                        <label><input type="radio" name="edit-mood" value="기타"> 기타</label>
+                    </div>
+                </fieldset>
+
+                <div class="edit-field">
+                    <label for="edit-title-input">제목</label>
+                    <input id="edit-title-input" type="text" required>
+                </div>
+
+                <div class="edit-field">
+                    <label for="edit-content-input">내용</label>
+                    <textarea id="edit-content-input" required></textarea>
+                </div>
+
+                <div class="edit-button-area">
+                    <button id="cancel-edit-button" class="cancel-edit-button" type="button">취소</button>
+                    <button class="submit-edit-button" type="submit">수정 하기</button>
+                </div>
+                <hr>
+            </form>
+
             <p class="comment-title-area">회고</p>
             <div class="comment-area">
                 <form id="comment-form" class="comment-area">
