@@ -89,6 +89,7 @@ body {
     align-items: center;
 
     gap: 1.25rem;
+    font-size:24px;
 }
 
 .diary-banner p {

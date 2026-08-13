@@ -32,12 +32,12 @@ const confirmDeleteButton =
 
 /* 감정 이미지 */
 const getMoodImage = (mood) => {
-    if (mood === "행복") return '<img src="./img/happy.png"/>';
-    if (mood === "슬픔") return '<img src="./img/sad.png"/>';
-    if (mood === "놀램") return '<img src="./img/suprised.png"/>';
-    if (mood === "화남") return '<img src="./img/angry.png"/>';
+    if (mood === "행복") return '<img src="./img/happy.png" alt="">';
+    if (mood === "슬픔") return '<img src="./img/sad.png" alt="">';
+    if (mood === "놀램") return '<img src="./img/suprised.png" alt="">';
+    if (mood === "화남") return '<img src="./img/angry.png" alt="">';
 
-    return '<img src="./img/etc.png"/>';
+    return '<img src="./img/etc.png" alt="">';
 };
 
 

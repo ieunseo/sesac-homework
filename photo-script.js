@@ -78,7 +78,7 @@ window.addEventListener("scroll", () => {
             const imgURL = data.message;
             document.getElementById("photo-container").innerHTML =
                 imgURL.map((i) =>
-                    `<img src="${i}" class="photos">`
+                    `<img src="${i}" class="photos" alt="강아지 사진">`
                 ).join("\n");
         }))
     }
@@ -104,7 +104,7 @@ const pictures = () =>{
 
             document.getElementById("photo-container").innerHTML =
                 imagesURL.map((i) =>
-                    `<img src="${i}" class="photos">`
+                    `<img src="${i}" class="photos" alt="강아지 사진">`
                 ).join("\n");
         })
 }

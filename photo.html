@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,15 +16,15 @@
     <h2>
       <a href="./index.html">은서의 다이어리</a>
     </h2>
-    <img src="img/banner.jpg"/>
+    <img src="img/banner.jpg" alt="다이어리 배너">
   </header>
 
     <main>
       <section class="diary-section">
-        <div class="diary-banner">
+        <nav class="diary-banner" aria-label="보관함 메뉴">
           <p id="diary-album">일기보관함</p>
           <p id="photo-album">사진보관함</p>
-        </div>
+        </nav>
       </section>
       <section class="album-section">
         <select
@@ -44,10 +44,10 @@
     </main>
 </div>
 <!-- 상단 이동 버튼 -->
-<section>
+<div>
   <button type="button" id="scroll-top-button" class="scroll-top-button" aria-label="맨 위로 이동">
-    <img src="./img/up_outline_light_xl.svg" width="40" height="40">
+    <img src="./img/up_outline_light_xl.svg" width="40" height="40" alt="">
   </button>
-</section>
+</div>
 </body>
 </html>

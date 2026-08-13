@@ -99,6 +99,7 @@ body {
     color: #ABABAB;
     white-space: nowrap;
     cursor: pointer;
+    font-size:24px;
 }
 #diary-album{
     color: var(--text);
@@ -602,21 +603,21 @@ body {
 }
 
 .diary-mood {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: bold;
 }
 
 .diary-date {
     color: var(--subtext);
 
-    font-size: 11px;
+    font-size: 14px;
 }
 
 /* 일기 제목 */
 .diary-title {
     margin: 8px 0 0;
 
-    font-size: 15px;
+    font-size: 18px;
     line-height: 1.4;
 
     overflow: hidden;
@@ -1136,7 +1137,7 @@ body.modal-open {
     .diary-banner p {
         margin: 16px 0;
 
-        font-size: inherit;
+        font-size: 24px;
         white-space: nowrap;
     }
 
@@ -1273,7 +1274,7 @@ body.modal-open {
     .diary-mood {
         min-width: 0;
 
-        font-size: 12px;
+        font-size: 14px;
 
         overflow: hidden;
         text-overflow: ellipsis;
@@ -1310,7 +1311,7 @@ body.modal-open {
     .diary-title {
         margin: 8px 0 0;
 
-        font-size: 15px;
+        font-size: 18px;
         line-height: 1.4;
 
         overflow: hidden;
