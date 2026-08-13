@@ -262,7 +262,7 @@ contentCopy.addEventListener("click", () => {
     navigator.clipboard.writeText(content);
 
     document.querySelector(".copy-toast").style.display =
-        "block";
+        "flex";
 });
 
 /* 모달 */

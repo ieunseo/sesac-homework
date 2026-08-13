@@ -2,17 +2,26 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-<title>상세보기</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>상세보기</title>
     <link rel="stylesheet" href="./detail-style.css">
     <script src="./detail-script.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
 </head>
-<body><div class="container">
+<body>
+    <main class="container">
         <header class="main-header">
             <h2>
                 <a href="./index.html">은서의 다이어리</a>
             </h2>
+            <label class="dark-mode-area">
+                다크모드
+                <input type="checkbox" class="dark-toggle">
+            </label>
         </header>
-        <div class="diary-dtail-area">
+        <section class="diary-dtail-area">
             <!-- 타이틀 -->
             <div class="diary-detail-title">
                 <div class="diary-title">제목</div>
@@ -24,7 +33,9 @@
                 <div class="mood-class">행복해요</div>
                 <div class="diary-date">작성일 YYYY.MM.DD</div>
             </div>
-            <div class="diary-content">내용
+            <span>내용</span>
+            <div class="diary-content">
+                내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다내용입니다
             </div>
             <!-- 오른쪽 하단에 내용복사 -->
             <div class="action-area">
@@ -40,7 +51,7 @@
 
             <hr>
             <p class="comment-title-area">회고</p>
-            <section class="comment-area">
+            <div class="comment-area">
                 <form id="comment-form" class="comment-area">
                     <input
                         id="comment-input"
@@ -57,54 +68,46 @@
                     </button>
                 </form>
 
-            </section>
-            <div class="comment-list"> 등록된 회고가 없습니다. </div>
-        </div>
-    </div>
+            </div>
+            <div class="comment-list" style="text-align: center; color:gray"> 등록된 회고가 없습니다. </div>
+        </section>
+    </main>
 <!-- 토스트-->
-<div class="copy-toast">
-    복사되었어요
-</div>
-<!-- 모달 -->
-<div id="delete-modal" class="delete-modal">
-    <div class="delete-modal-content">
-
-        <div class="delete-modal-text-area">
-            <h3>일기 삭제</h3>
-            <p>일기를 삭제하시겠어요?</p>
+    <section>
+        <div class="copy-toast">
+            내용이 복사되었습니다.
         </div>
+        <!-- 모달 -->
+        <div id="delete-modal" class="delete-modal">
+            <div class="delete-modal-content">
 
-        <div class="delete-modal-button-area">
-            <button
-                    type="button"
-                    id="cancel-delete-button"
-            >
-                취소
-            </button>
+                <div class="delete-modal-text-area">
+                    <h3>일기 삭제</h3>
+                    <p>일기를 삭제하시겠어요?</p>
+                </div>
 
-            <button
-                    type="button"
-                    id="confirm-delete-button"
-            >
-                삭제
-            </button>
+                <div class="delete-modal-button-area">
+                    <button
+                            type="button"
+                            id="cancel-delete-button"
+                    >
+                        취소
+                    </button>
+
+                    <button
+                            type="button"
+                            id="confirm-delete-button"
+                    >
+                        삭제
+                    </button>
+                </div>
+
+            </div>
         </div>
-
-    </div>
-</div>
-<!-- 상단 이동 버튼 -->
-<button
-        type="button"
-        id="scroll-top-button"
-        class="scroll-top-button"
-        aria-label="맨 위로 이동"
->
-    <img
-            src="./img/up_outline_light_xl.svg"
-            width="40"
-            height="40"
-            alt=""
-    >
-</button>
+        <!-- 상단 이동 버튼 -->
+        <button type="button" id="scroll-top-button" class="scroll-top-button" aria-label="맨 위로 이동">
+            <img src="./img/up_outline_light_xl.svg" width="40" height="40" />
+        </button>
+    </section>
 </body>
 </html>

@@ -2,15 +2,14 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0"
-    >
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>은서의 다이어리</title>
 
     <link rel="stylesheet" href="./index-style.css">
     <script src="./index-script.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -279,14 +278,24 @@
                             required
                     ></textarea>
                 </div>
+                <div class="btn">
+                    <button
+                            class="close-btn"
+                            onclick="closeDiaryModal()"
+                            type="button"
+                    >
+                        닫기
+                    </button>
+                        <button
+                                class="form-btn"
+                                id="submit-diary-button"
+                                type="submit"
+                        >
+                            일기 등록하기
+                        </button>
+                </div>
 
-                <button
-                        class="form-btn"
-                        id="submit-diary-button"
-                        type="submit"
-                >
-                    일기 등록하기
-                </button>
+
             </div>
         </form>
     </div>
