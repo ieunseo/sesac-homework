@@ -1,3 +1,26 @@
+/* 오래된 브라우저용 Element.closest() 폴리필 */
+if (!Element.prototype.matches) {
+    Element.prototype.matches =
+        Element.prototype.msMatchesSelector ||
+        Element.prototype.webkitMatchesSelector;
+}
+
+if (!Element.prototype.closest) {
+    Element.prototype.closest = function (selector) {
+        let element = this;
+
+        while (element && element.nodeType === 1) {
+            if (element.matches(selector)) {
+                return element;
+            }
+
+            element = element.parentElement;
+        }
+
+        return null;
+    };
+}
+
 /* LocalStorage에서 사용할 키 */
 const STORAGE_KEY = "emotionDiary";
 
@@ -45,7 +68,7 @@ const successDiaryModal = document.getElementById("success-diary-modal");
 const closeSubmitDiaryButton = document.getElementById("close-submit-diary-button");
 
 /* 다크모드 */
-const darkmode = document.querySelector(".dark-toggle");
+const darkModeToggles = document.querySelectorAll(".dark-toggle");
 const formPanel = document.querySelector(".form-panel");
 const successModal = document.querySelector(".success-modal");
 
@@ -130,22 +153,22 @@ const saveData = () => {
 const getMoodImage = (mood) => {
 
     if (mood === "행복") {
-        return '<img src="./img/happy.png"/>';
+        return '<img src="./img/happy.png" alt=""/>';
     }
 
     if (mood === "슬픔") {
-        return '<img src="./img/sad.png"/>';
+        return '<img src="./img/sad.png" alt=""/>';
     }
 
     if (mood === "놀램") {
-        return '<img src="./img/suprised.png"/>';
+        return '<img src="./img/suprised.png" alt=""/>';
     }
 
     if (mood === "화남") {
-        return '<img src="./img/angry.png"/>';
+        return '<img src="./img/angry.png" alt=""/>';
     }
 
-    return '<img src="./img/happy.png"/>';
+    return '<img src="./img/happy.png" alt=""/>';
 };
 
 
@@ -329,7 +352,7 @@ const renderDiaryList = (clickedPage = 1) => {
                     <article class="diary-card ${getMoodClass(diary.mood)}"data-id="${diary.id}">
 
                         <button type="button" class="delete-button" data-id="${diary.id}" aria-label="일기 삭제">
-                            <img src="./img/close_outline_light_s.svg"/>
+                            <img src="./img/close_outline_light_s.svg" alt="">
                         </button>
 
 
@@ -746,12 +769,22 @@ window.addEventListener("load", () => {
    모달
 ========================= */
 
-/* 다크모드 색상 변경 */
-darkmode.addEventListener("change", () => {
-    formPanel.classList.toggle("modal-dark");
-    successModal.classList.toggle("modal-dark");
+/* 메인 화면과 모달의 다크모드를 함께 변경 */
+const applyDarkMode = (isDarkMode) => {
+    document.body.classList.toggle("dark-mode", isDarkMode);
+    formPanel.classList.toggle("modal-dark", isDarkMode);
+    successModal.classList.toggle("modal-dark", isDarkMode);
 
-})
+    darkModeToggles.forEach((toggle) => {
+        toggle.checked = isDarkMode;
+    });
+};
+
+darkModeToggles.forEach((toggle) => {
+    toggle.addEventListener("change", () => {
+        applyDarkMode(toggle.checked);
+    });
+});
 
 /* 일기 작성 모달 열기 */
 function openDiaryModal() {

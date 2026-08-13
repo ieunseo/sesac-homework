@@ -22,10 +22,26 @@
     --white-input:#ffffff;
 }
 
+body.dark-mode {
+    --bg: #1b1b1b;
+    --panel: #1b1b1b;
+    --text: #f5f5f5;
+    --subtext: #b8b8b8;
+    --line: #3a3a3a;
+    --button: #f5f5f5;
+    --white: #1b1b1b;
+    --white-input: #000000;
+}
+
 
 /* 전체 요소 기본 설정 */
 * {
     box-sizing: border-box;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
 }
 
 body {
@@ -33,6 +49,8 @@ body {
 
     background-color: var(--white);
     color: var(--text);
+
+    transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 .container {
@@ -63,7 +81,7 @@ a:hover {
 .main-header h2 {
     margin: 0;
 
-    font-size: 18px;
+    font-size: 24px;
     font-weight: bold;
 }
 
@@ -75,10 +93,13 @@ a:hover {
 
     color: var(--subtext);
     font-size: 12px;
+    cursor: pointer;
 }
 
 .dark-toggle {
     right:90%;
+    -webkit-appearance: none;
+    -moz-appearance: none;
     appearance: none;
     width:58px;
     height:32px;
@@ -98,7 +119,7 @@ a:hover {
 }
 
 .dark-toggle:checked{
-    background-color: lime;
+    background-color: #22c55e;
 }
 
 .dark-toggle:checked::after{
@@ -119,7 +140,7 @@ a:hover {
     margin: 0;
 
     border: 0;
-    border-top: 1px solid #222;
+    border-top: 1px solid var(--text);
 }
 
 /* 감정 상태 */
@@ -138,8 +159,8 @@ a:hover {
 }
 
 .mood-img img {
-    width: 18px;
-    height: 18px;
+    width: 32px;
+    height: 32px;
 }
 
 
@@ -174,7 +195,7 @@ a:hover {
     font-size: 16px;
     color: var(--text);
     font-weight: bold;
-    margin:13px 0 ;
+    margin:24px 0px ;
 }
 
 /* 일기 내용 */
@@ -228,12 +249,159 @@ a:hover {
     border-radius: 4px;
 
     background-color: var(--white);
+    color: var(--text);
 
     font-size: 18px;
 }
 
 .diary-detail-btn:hover {
     cursor: pointer;
+}
+
+/* =========================
+   일기 수정 폼
+========================= */
+.diary-edit-form {
+    padding-top: 28px;
+}
+
+.diary-edit-form[hidden],
+#diary-view-area[hidden] {
+    display: none;
+}
+
+.edit-mood-fieldset {
+    margin: 0 0 26px;
+    padding: 0;
+
+    border: 0;
+}
+
+.edit-mood-fieldset legend {
+    margin-bottom: 16px;
+
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.edit-mood-group {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    gap: 24px;
+}
+
+.edit-mood-group label {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 8px;
+
+    font-size: 17px;
+    cursor: pointer;
+}
+
+.edit-mood-group input {
+    width: 20px;
+    height: 20px;
+
+    margin: 0;
+
+    accent-color: #111111;
+}
+
+.edit-field {
+    margin-bottom: 24px;
+}
+
+.edit-field label {
+    display: block;
+
+    margin-bottom: 10px;
+
+    font-size: 14px;
+}
+
+.edit-field input,
+.edit-field textarea {
+    width: 100%;
+
+    padding: 12px 14px;
+
+    border: 1px solid #d4d4d4;
+    border-radius: 8px;
+    outline: none;
+
+    background-color: var(--white-input);
+    color: var(--text);
+
+    font: inherit;
+}
+
+.edit-field input {
+    height: 48px;
+}
+
+.edit-field textarea {
+    min-height: 128px;
+
+    line-height: 24px;
+    resize: vertical;
+}
+
+.edit-field input:focus,
+.edit-field textarea:focus {
+    border-color: #777777;
+}
+
+.edit-button-area {
+    display: flex;
+    justify-content: center;
+
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.edit-button-area button {
+    min-width: 104px;
+    height: 48px;
+
+    border: 1px solid var(--text);
+    border-radius: 8px;
+
+    font-size: 17px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.cancel-edit-button {
+    background-color: var(--white);
+    color: var(--text);
+}
+
+.submit-edit-button {
+    background-color: var(--text);
+    color: var(--white);
+}
+
+.comment-area input:disabled,
+.comment-btn:disabled {
+    border-color: #eeeeee;
+    background-color: #eeeeee;
+    color: #b7b7b7;
+    cursor: not-allowed;
+}
+
+body.dark-mode .edit-mood-group input {
+    accent-color: #ffffff;
+}
+
+body.dark-mode .comment-area input:disabled,
+body.dark-mode .comment-btn:disabled {
+    border-color: #444444;
+    background-color: #333333;
+    color: #888888;
 }
 
 
@@ -281,6 +449,9 @@ a:hover {
     border-radius: 5px;
 
     outline: none;
+
+    background-color: var(--white-input);
+    color: var(--text);
 
     font-size: 18px;
     line-height: 24px;
@@ -338,11 +509,11 @@ a:hover {
 }
 
 .comment-content {
-    color: #111;
+    color: var(--text);
 }
 
 .comment-date {
-    color: #777;
+    color: var(--subtext);
 
     white-space: nowrap;
 }
@@ -354,6 +525,14 @@ a:hover {
 
     .main-header {
         padding-bottom: 28px;
+    }
+
+    .edit-mood-group {
+        gap: 14px 18px;
+    }
+
+    .edit-button-area button {
+        min-width: 96px;
     }
 }
 
@@ -404,6 +583,10 @@ a:hover {
     display: none;
 
     position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
     inset: 0;
     z-index: 1000;
 
@@ -490,6 +673,19 @@ a:hover {
 #confirm-delete-button {
     background-color: var(--button);
     color: var(--white);
+}
+
+body.dark-mode .content-copy-img,
+body.dark-mode .scroll-top-button img {
+    filter: invert(1);
+}
+
+body.dark-mode .comment-item + .comment-item {
+    border-top-color: var(--line);
+}
+
+body.dark-mode .delete-modal-content {
+    border: 1px solid var(--line);
 }
 /* 상단 이동 버튼 */
 .scroll-top-button {

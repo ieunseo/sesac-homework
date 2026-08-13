@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,41 +13,80 @@
 <body>
 <div class="container">
   <header class="main-header">
-    <h2>
-      <a href="./index.html">은서의 다이어리</a>
-    </h2>
-    <img src="img/banner.jpg"/>
+    <div class="main-header-top">
+      <h2>
+        <a href="./index.html">은서의 다이어리</a>
+      </h2>
+      <label class="dark-mode-area">
+        다크모드
+        <input type="checkbox" class="dark-toggle">
+      </label>
+    </div>
+    <img src="img/banner.jpg" alt="다이어리 배너">
   </header>
 
     <main>
       <section class="diary-section">
-        <div class="diary-banner">
+        <nav class="diary-banner" aria-label="보관함 메뉴">
           <p id="diary-album">일기보관함</p>
           <p id="photo-album">사진보관함</p>
-        </div>
+        </nav>
       </section>
       <section class="album-section">
-        <select
-                id="photo-filter"
-                class="photo-filter"
-                aria-label=" 사진 필터"
-        >
-          <option value="default" >기본</option>
-          <option value="width" >가로형</option>
-          <option value="height" >세로형</option>
+        <div class="photo-filter" aria-label="사진 필터">
+          <input
+                  type="checkbox"
+                  id="photo-filter-toggle"
+                  class="photo-filter-toggle"
+          >
 
-        </select>
+          <label for="photo-filter-toggle" class="photo-filter-title">
+            <span id="selected-photo-filter-text">기본</span>
+            <img class="dropdown-arrow" src="./img/down_fill_light_m.svg" alt="">
+          </label>
+
+          <ul class="photo-filter-list">
+            <li>
+              <input type="radio" name="photo-filter" id="photo-default" value="default" checked>
+              <label for="photo-default">
+                <span>기본</span>
+                <img class="check-icon" src="./img/check_outline_light_xs.svg" alt="">
+              </label>
+            </li>
+            <li>
+              <input type="radio" name="photo-filter" id="photo-width" value="width">
+              <label for="photo-width">
+                <span>가로형</span>
+                <img class="check-icon" src="./img/check_outline_light_xs.svg" alt="">
+              </label>
+            </li>
+            <li>
+              <input type="radio" name="photo-filter" id="photo-height" value="height">
+              <label for="photo-height">
+                <span>세로형</span>
+                <img class="check-icon" src="./img/check_outline_light_xs.svg" alt="">
+              </label>
+            </li>
+          </ul>
+        </div>
         <div class="photos-container" id="photo-container">
             <!-- 사진이 렌더링 되는곳 -->
         </div>
       </section>
     </main>
 </div>
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <strong>은서의 다이어리</strong>
+    <p>대표 : {name}</p>
+    <p>Copyright © 2024. {name} Co., Ltd.</p>
+  </div>
+</footer>
 <!-- 상단 이동 버튼 -->
-<section>
+<div>
   <button type="button" id="scroll-top-button" class="scroll-top-button" aria-label="맨 위로 이동">
-    <img src="./img/up_outline_light_xl.svg" width="40" height="40">
+    <img src="./img/up_outline_light_xl.svg" width="40" height="40" alt="">
   </button>
-</section>
+</div>
 </body>
 </html>

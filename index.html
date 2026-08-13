@@ -15,18 +15,24 @@
 <body>
 <div class="container">
     <header class="main-header">
-        <h2>
-            <a href="./index.html">은서의 다이어리</a>
-            <img src="img/banner.jpg"/>
-        </h2>
+        <div class="main-header-top">
+            <h2>
+                <a href="./index.html">은서의 다이어리</a>
+            </h2>
+            <label class="dark-mode-area main-dark-mode-area">
+                다크모드
+                <input type="checkbox" class="dark-toggle main-dark-toggle">
+            </label>
+        </div>
+        <img src="img/banner.jpg" alt="다이어리 배너">
     </header>
 
     <main>
         <section class="diary-section">
-            <div class="diary-banner">
+            <nav class="diary-banner" aria-label="보관함 메뉴">
                 <p id="diary-album">일기보관함</p>
                 <p id="photo-album">사진보관함</p>
-            </div>
+            </nav>
 
             <div class="diary-header">
                 <div class="filter-area">
@@ -45,7 +51,7 @@
                                 class="emotion-dropdown-title"
                         >
                             <span id="selected-emotion-text">전체</span>
-                            <img class="dropdown-arrow" src="./img/down_fill_light_m.svg"/>
+                            <img class="dropdown-arrow" src="./img/down_fill_light_m.svg" alt="">
                         </label>
 
                         <!-- 드롭다운 목록 -->
@@ -60,7 +66,7 @@
                                 >
                                 <label for="emotion-all">
                                     <span>전체</span>
-                                    <img class="check-icon" src="./img/check_outline_light_xs.svg"/>
+                                    <img class="check-icon" src="./img/check_outline_light_xs.svg" alt="">
                                 </label>
                             </li>
 
@@ -73,7 +79,7 @@
                                 >
                                 <label for="emotion-happy">
                                     <span>행복해요</span>
-                                    <img class="check-icon" src="./img/check_outline_light_xs.svg"/>
+                                    <img class="check-icon" src="./img/check_outline_light_xs.svg" alt="">
                                 </label>
                             </li>
 
@@ -86,7 +92,7 @@
                                 >
                                 <label for="emotion-sad">
                                     <span>슬퍼요</span>
-                                    <img class="check-icon" src="./img/check_outline_light_xs.svg"/>
+                                    <img class="check-icon" src="./img/check_outline_light_xs.svg" alt="">
                                 </label>
                             </li>
 
@@ -99,7 +105,7 @@
                                 >
                                 <label for="emotion-surprised">
                                     <span>놀랐어요</span>
-                                    <img class="check-icon" src="./img/check_outline_light_xs.svg"/>
+                                    <img class="check-icon" src="./img/check_outline_light_xs.svg" alt="">
                                 </label>
                             </li>
 
@@ -112,7 +118,7 @@
                                 >
                                 <label for="emotion-angry">
                                     <span>화나요</span>
-                                    <img class="check-icon" src="./img/check_outline_light_xs.svg"/>
+                                    <img class="check-icon" src="./img/check_outline_light_xs.svg" alt="">
                                 </label>
                             </li>
 
@@ -125,7 +131,7 @@
                                 >
                                 <label for="emotion-etc">
                                     <span>기타</span>
-                                    <img class="check-icon" src="./img/check_outline_light_xs.svg"/>
+                                    <img class="check-icon" src="./img/check_outline_light_xs.svg" alt="">
                                 </label>
                             </li>
                         </ul>
@@ -159,13 +165,13 @@
             <!-- 페이지네이션 -->
             <div id="pagination" class="pagination">
                 <button id="pagination-prev-button" class="pagination-arrow pagination-prev" type="button">
-                    <img id="pagination-prev-image" src="./img/rightdisabled_outline_light_m.svg"/>
+                    <img id="pagination-prev-image" src="./img/rightdisabled_outline_light_m.svg" alt="">
                 </button>
 
                 <span id="pagination-number-area" class="pagination-number-area"></span>
 
                 <button id="pagination-next-button" class="pagination-arrow pagination-next" type="button">
-                    <img id="pagination-next-image" src="./img/rightdisabled_outline_light_m.svg"/>
+                    <img id="pagination-next-image" src="./img/rightdisabled_outline_light_m.svg" alt="">
                 </button>
             </div>
         </section>
@@ -186,6 +192,14 @@
         </button>
     </main>
 </div>
+
+<footer class="site-footer">
+    <div class="site-footer-inner">
+        <strong>은서의 다이어리</strong>
+        <p>대표 : {name}</p>
+        <p>Copyright © 2024. {name} Co., Ltd.</p>
+    </div>
+</footer>
 
 <!-- 일기 작성 모달 -->
 <div

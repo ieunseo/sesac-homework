@@ -4,6 +4,11 @@ const diaryAlbum = document.getElementById("diary-album");
 const photoAlbum = document.getElementById("photo-album");
 const scrollTopButton = document.getElementById("scroll-top-button");
 const photoContainer = document.getElementById("photo-container");
+const darkModeToggle = document.querySelector(".dark-toggle");
+
+darkModeToggle.addEventListener("change", () => {
+    document.body.classList.toggle("dark-mode", darkModeToggle.checked);
+});
 
 diaryAlbum.addEventListener("click", () => {
     if (location.href.includes("index.html")) {
@@ -34,10 +39,11 @@ scrollTopButton.addEventListener(
     }
 );
 
-const target = document.getElementById("photo-filter");
+const photoFilterInputs = document.querySelectorAll('input[name="photo-filter"]');
+const photoFilterToggle = document.getElementById("photo-filter-toggle");
+const selectedPhotoFilterText = document.getElementById("selected-photo-filter-text");
 
-const changePhotoRatio = (e) => {
-    const value = e.target.value;
+const changePhotoRatio = (value) => {
 
     const photos = document.querySelectorAll(".photos");
 
@@ -58,7 +64,19 @@ const changePhotoRatio = (e) => {
     });
 };
 
-target.addEventListener("change", changePhotoRatio);
+photoFilterInputs.forEach((input) => {
+    input.addEventListener("change", (event) => {
+        const selectedLabel = event.target
+            .nextElementSibling
+            .querySelector("span")
+            .textContent;
+
+        selectedPhotoFilterText.textContent = selectedLabel;
+        photoFilterToggle.checked = false;
+
+        changePhotoRatio(event.target.value);
+    });
+});
 
 
 /* 무한스크롤 과 스로틀링 */
@@ -78,8 +96,11 @@ window.addEventListener("scroll", () => {
             const imgURL = data.message;
             document.getElementById("photo-container").innerHTML =
                 imgURL.map((i) =>
-                    `<img src="${i}" class="photos">`
+                    `<img src="${i}" class="photos" alt="강아지 사진">`
                 ).join("\n");
+
+            const selectedFilter = document.querySelector('input[name="photo-filter"]:checked');
+            changePhotoRatio(selectedFilter.value);
         }))
     }
 })
@@ -104,8 +125,11 @@ const pictures = () =>{
 
             document.getElementById("photo-container").innerHTML =
                 imagesURL.map((i) =>
-                    `<img src="${i}" class="photos">`
+                    `<img src="${i}" class="photos" alt="강아지 사진">`
                 ).join("\n");
+
+            const selectedFilter = document.querySelector('input[name="photo-filter"]:checked');
+            changePhotoRatio(selectedFilter.value);
         })
 }
 pictures();

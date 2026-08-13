@@ -11,6 +11,12 @@ let selectData = {};
 let commentListData = [];
 
 const scrollTopButton = document.getElementById("scroll-top-button");
+const darkModeToggle = document.querySelector(".dark-toggle");
+
+/* 다크모드 */
+darkModeToggle.addEventListener("change", () => {
+    document.body.classList.toggle("dark-mode", darkModeToggle.checked);
+});
 
 /* 댓글 관련 요소 */
 const commentInput = document.querySelector("#comment-input");
@@ -30,14 +36,23 @@ const cancelDeleteButton =
 const confirmDeleteButton =
     document.querySelector("#confirm-delete-button");
 
+/* 일기 수정 요소 */
+const diaryViewArea = document.querySelector("#diary-view-area");
+const editButton = document.querySelector("#diary-edit-btn");
+const editForm = document.querySelector("#diary-edit-form");
+const editTitleInput = document.querySelector("#edit-title-input");
+const editContentInput = document.querySelector("#edit-content-input");
+const cancelEditButton = document.querySelector("#cancel-edit-button");
+const commentButton = document.querySelector("#comment-button");
+
 /* 감정 이미지 */
 const getMoodImage = (mood) => {
-    if (mood === "행복") return '<img src="./img/happy.png"/>';
-    if (mood === "슬픔") return '<img src="./img/sad.png"/>';
-    if (mood === "놀램") return '<img src="./img/suprised.png"/>';
-    if (mood === "화남") return '<img src="./img/angry.png"/>';
+    if (mood === "행복") return '<img src="./img/happy.png" alt="">';
+    if (mood === "슬픔") return '<img src="./img/sad.png" alt="">';
+    if (mood === "놀램") return '<img src="./img/suprised.png" alt="">';
+    if (mood === "화남") return '<img src="./img/angry.png" alt="">';
 
-    return '<img src="./img/etc.png"/>';
+    return '<img src="./img/etc.png" alt="">';
 };
 
 
@@ -221,6 +236,73 @@ const saveData = () => {
         JSON.stringify(storageData)
     );
 };
+
+
+/* =========================
+   일기 수정
+========================= */
+const setEditMode = (isEditing) => {
+    diaryViewArea.hidden = isEditing;
+    editForm.hidden = !isEditing;
+
+    commentInput.disabled = isEditing;
+    commentButton.disabled = isEditing;
+    commentInput.placeholder = isEditing
+        ? "수정중일땐 회고를 작성할 수 없어요."
+        : "회고를 남겨보세요.";
+};
+
+editButton.addEventListener("click", () => {
+    editTitleInput.value = selectData.title;
+    editContentInput.value = selectData.content;
+
+    const selectedMoodInput = document.querySelector(
+        `input[name="edit-mood"][value="${selectData.mood}"]`
+    );
+
+    if (selectedMoodInput !== null) {
+        selectedMoodInput.checked = true;
+    }
+
+    setEditMode(true);
+    editTitleInput.focus();
+});
+
+cancelEditButton.addEventListener("click", () => {
+    setEditMode(false);
+});
+
+editForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const selectedMoodInput = document.querySelector(
+        'input[name="edit-mood"]:checked'
+    );
+    const title = editTitleInput.value.trim();
+    const content = editContentInput.value.trim();
+
+    if (selectedMoodInput === null || title === "" || content === "") {
+        return;
+    }
+
+    const diaryIndex = diaryListData.findIndex((diary) => {
+        return diary.id === diaryId;
+    });
+
+    if (diaryIndex === -1) {
+        return;
+    }
+
+    diaryListData[diaryIndex] = {
+        ...diaryListData[diaryIndex],
+        mood: selectedMoodInput.value,
+        title: title,
+        content: content
+    };
+
+    saveData();
+    location.reload();
+});
 
 
 /* 댓글 등록 */
