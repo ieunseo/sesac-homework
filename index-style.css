@@ -1065,8 +1065,8 @@ body.dark-mode .scroll-top-button img {
     margin-top: 48px;
     padding: 24px 0 30px;
 
-    background-color: var(--footer-bg);
-    color: var(--footer-text);
+    background-color: var(--white);
+    color: var(--text);
 }
 
 .site-footer-inner {
@@ -1081,7 +1081,7 @@ body.dark-mode .scroll-top-button img {
 
     margin-bottom: 22px;
 
-    color: #1f1f1f;
+    color: var(--text);
     font-size: 16px;
 }
 
